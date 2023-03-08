@@ -5,7 +5,7 @@ import NavBar from "./components/NavBar"
 
 const App = () => {
   return (
-    <div className="flex justify-center gap-8 max-w-[50vw] mx-auto mt-1.5">   
+    <div className="flex justify-center gap-8 max-w-[50vw] mx-auto">  
       <NavBar />
       <Feed />
       <Explore />

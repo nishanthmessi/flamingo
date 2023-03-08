@@ -4,7 +4,7 @@ import { RiHome7Line, RiHashtag, RiNotification2Line, RiMailLine, RiBookmarkLine
 
 const NavBar = () => {
   return (
-    <div className='flex flex-col justify-start w-[30%]'>
+    <div className='flex flex-col justify-start w-[10vw] mt-1.5'>
       <div className="mb-4">
         <button className="hover:bg-blue-100 p-2 rounded-full">
           <FaTwitter className="text-blue-400 text-[1.4rem]"/>
