@@ -1,4 +1,5 @@
 import { RiUserLine, RiGalleryLine, RiFileGifLine, RiChatPollLine, RiEmotionHappyLine, RiCalendarCheckLine, RiMapPin2Line } from "react-icons/ri"
+import Posts from "./Posts"
 
 const Feed = () => {
   return (
@@ -25,6 +26,7 @@ const Feed = () => {
           <button className="bg-blue-400 rounded-3xl text-xs text-white px-3 py-1">Tweet</button>
         </div>
       </div>
+      <Posts />
     </div>
   )
 }
