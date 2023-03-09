@@ -14,7 +14,7 @@ const Feed = () => {
         />
       </div>
       <div className="flex justify-between items-center mt-4">
-        <div className="flex gap-3 text-lg text-blue-500">
+        <div className="flex gap-3 text-lg text-pink-500">
           <RiGalleryLine />
           <RiFileGifLine />
           <RiChatPollLine />
@@ -23,7 +23,7 @@ const Feed = () => {
           <RiMapPin2Line />
         </div>
         <div>
-          <button className="bg-blue-400 rounded-3xl text-xs text-white px-3 py-1">Tweet</button>
+          <button className="bg-pink-400 rounded-3xl text-xs text-white px-3 py-1">Tweet</button>
         </div>
       </div>
       <Posts />
