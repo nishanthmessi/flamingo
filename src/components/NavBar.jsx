@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-import { FaTwitter } from "react-icons/fa"
 import { RiHome7Line, RiHashtag, RiNotification2Line, RiMailLine, RiBookmarkLine, RiMenuAddLine} from "react-icons/ri"
 import Logo from "../assets/main-logo.png"
 
@@ -9,7 +8,6 @@ const NavBar = () => {
       <div className="sticky top-1">
         <div className="mb-4">
           <button className="hover:bg-pink-100 p-1.5 rounded-full transition duration-400 ease-in">
-            {/* <FaTwitter className="text-yellow-500 text-[1.4rem]"/> */}
             <img 
               src={Logo} 
               alt="logo"
@@ -18,42 +16,42 @@ const NavBar = () => {
           </button>
         </div>
 
-        <Link to='/' className="">
-          <div className="flex items-center gap-4 hover:bg-gray-200 2xl:rounded-3xl px-2 py-2 transition duration-300 ease-in mb-2">
+        <Link to='/' className="flex items-center">
+          <div className="flex items-center 2xl:jusitfy-start gap-4 hover:bg-gray-200 rounded-3xl px-2 py-2 transition duration-300 ease-in mb-2">
             <RiHome7Line className="text-2xl"/>
             <h1 className="font-medium hidden 2xl:flex">Home</h1>
           </div>
         </Link>
 
-        <Link to='/' className="">
+        <Link to='/' className="flex items-center">
           <div className="flex items-center gap-4 hover:bg-gray-200 rounded-3xl px-2 py-2 transition duration-300 ease-in mb-2">
             <RiHashtag className="text-2xl"/>
             <h1 className="font-medium hidden 2xl:flex">Explore</h1>
           </div>
         </Link>
 
-        <Link to='/' className="">
+        <Link to='/' className="flex items-center">
           <div className="flex items-center gap-4 hover:bg-gray-200 rounded-3xl px-2 py-2 transition duration-300 ease-in mb-2">
             <RiNotification2Line className="text-2xl"/>
             <h1 className="font-medium hidden 2xl:flex">Notificatons</h1>
           </div>
         </Link>
 
-        <Link to='/' className="">
+        <Link to='/' className="flex items-center">
           <div className="flex items-center gap-4 hover:bg-gray-200 rounded-3xl px-2 py-2 transition duration-300 ease-in mb-2">
             <RiMailLine className="text-2xl"/>
             <h1 className="font-medium hidden 2xl:flex">Messages</h1>
           </div>
         </Link>
 
-        <Link to='/' className="">
+        <Link to='/' className="flex items-center">
           <div className="flex items-center gap-4 hover:bg-gray-200 rounded-3xl px-2 py-2 transition duration-300 ease-in mb-2">
             <RiBookmarkLine className="text-2xl"/>
             <h1 className="font-medium hidden 2xl:flex">Bookmarks</h1>
           </div>
         </Link>
 
-        <Link to='/' className="">
+        <Link to='/' className="flex items-center">
           <div className="flex items-center gap-4 hover:bg-gray-200 rounded-3xl px-2 py-2 transition duration-300 ease-in mb-2">
             <RiMenuAddLine className="text-2xl"/>
             <h1 className="font-medium hidden 2xl:flex">More</h1>
