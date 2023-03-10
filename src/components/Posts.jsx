@@ -2,12 +2,12 @@ import { RiHeart3Line, RiShareLine, RiMessage2Line, RiMenu3Line } from "react-ic
 
 const Posts = () => {
   return (
-    <div className="flex flex-col border-y-[1px] py-3 mt-4">
+    <div className="flex flex-col border-t-[1px] py-3 mt-4">
       <div className='flex items-center justify-between gap-3'>
         <img 
           src="https://images.pexels.com/photos/10909386/pexels-photo-10909386.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load" 
           alt="post-img"
-          className="h-10 w-10 rounded-full object-cover cursor-pointer hover:outline hover:outline-[4px] hover:outline-yellow-300 transition duration-400 ease-in" 
+          className="h-10 w-10 rounded-full object-cover cursor-pointer hover:outline hover:outline-[4px] hover:outline-pink-100 transition duration-400 ease-in" 
         />
         <button className="text-center">
           <h1 className='font-semibold'>Sarah</h1>

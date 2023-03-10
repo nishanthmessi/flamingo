@@ -7,12 +7,12 @@ const NavBar = () => {
   return (
     <div className='flex flex-col justify-start w-[10vw] mt-1.5'>
       <div className="mb-4">
-        <button className="hover:bg-pink-100 p-2 rounded-full transition duration-400 ease-in">
+        <button className="hover:bg-pink-100 p-1.5 rounded-full transition duration-400 ease-in">
           {/* <FaTwitter className="text-yellow-500 text-[1.4rem]"/> */}
           <img 
             src={Logo} 
             alt="logo"
-            className="h-10"
+            className="h-9"
           />
         </button>
       </div>
