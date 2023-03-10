@@ -3,8 +3,8 @@ import Posts from "./Posts"
 
 const Feed = () => {
   return (
-    <div className='w-[36vw] border-x-[1px] px-4 py-2'>
-      <h1 className='font-semibold text-center'>Home</h1>
+    <div className='w-[40vw] xl:w-[28vw] border-x-[1px] px-4 py-2'>
+      <h1 className='font-semibold text-center'>Enjoy your time here!</h1>
       <div className='flex gap-2 mt-7'>
         <img 
           src="https://images.pexels.com/photos/10909386/pexels-photo-10909386.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load" 
