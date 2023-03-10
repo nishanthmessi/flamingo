@@ -18,7 +18,6 @@ const TrendingTags = () => {
             </div>
           </div>
           
-
           <button className="text-xs bg-blue-400 text-white px-2 py-1 rounded-3xl">Follow</button>
         </div>
       </div>

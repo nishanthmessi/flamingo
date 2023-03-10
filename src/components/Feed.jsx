@@ -4,7 +4,7 @@ import Posts from "./Posts"
 const Feed = () => {
   return (
     <div className='w-[36vw] border-x-[1px] px-4 py-2'>
-      <h1 className='font-medium'>Home</h1>
+      <h1 className='font-semibold text-center'>Home</h1>
       <div className='flex gap-2 mt-7'>
         <img 
           src="https://images.pexels.com/photos/10909386/pexels-photo-10909386.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load" 
@@ -31,6 +31,7 @@ const Feed = () => {
           <button className="bg-pink-400 rounded-3xl text-xs text-white px-3 py-1">Tweet</button>
         </div>
       </div>
+      <Posts />
       <Posts />
     </div>
   )

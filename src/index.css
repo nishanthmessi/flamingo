@@ -9,11 +9,3 @@
     font-family: 'Poppins', sans-serif;
   }
 }
-
-@layer utilities {
-  .text-wrap {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    hyphens: auto;
-  }
-}
