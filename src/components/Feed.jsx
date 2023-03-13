@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { RiGalleryLine } from "react-icons/ri"
 import Posts from "./Posts"
-import { storage } from "firebase"
+import { storage } from "../firebase"
 import { ref, uploadBytes } from "firebase/storage"
 import { v4 } from "uuid"
 
@@ -36,14 +36,18 @@ const Feed = () => {
       <div className="flex justify-between items-center mt-4">
         <label 
           className="flex items-center gap-2 px-2 py-1 bg-gray-200 hover:bg-gray-300 text-blue rounded-lg shadow-lg border cursor-pointer"
-          onClick={uploadMedia}
         >
           <RiGalleryLine className="text-pink-400"/>
           <span className="text-xs text-gray-500">Upload file</span>
           <input type='file' className="hidden" onChange={(e) => {setMediaUpload(e.target.files[0])}}/>
         </label>
         <div>
-          <button className="bg-pink-400 rounded-3xl text-xs text-white px-3 py-1">Tweet</button>
+          <button 
+            className="bg-pink-400 rounded-3xl text-xs text-white px-3 py-1"
+            onClick={uploadMedia}
+          >
+            Tweet
+          </button>
         </div>
       </div>
       <Posts />
