@@ -51,6 +51,8 @@ const Feed = () => {
         </div>
       </div>
       <Posts />
+      <Posts />
+      <Posts />
     </div>
   )
 }
