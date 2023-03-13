@@ -29,18 +29,18 @@ const Posts = () => {
 
         <div className="flex items-center justify-between mt-3">
           <div>
-            <button className="flex gap-1 items-center hover:text-red-600 hover:bg-red-300 rounded-2xl p-2 transition duration-400 ease-in">
+            <button className="flex gap-1 items-center hover:text-red-600 hover:bg-red-200 rounded-2xl p-2 transition duration-400 ease-in">
               <RiHeart3Line className="text-lg"/>
               <p className="text-sm">2000000</p>
             </button>
           </div>
 
           <div className="flex gap-6">
-            <button className="flex gap-1 items-center hover:text-green-600 hover:bg-green-300 rounded-full p-2 transition duration-400 ease-in">
+            <button className="flex gap-1 items-center hover:text-green-600 hover:bg-green-200 rounded-full p-2 transition duration-400 ease-in">
               <RiMessage2Line className="text-lg"/>
             </button>
 
-            <button className="flex gap-1 items-center hover:text-blue-600 hover:bg-blue-300 rounded-full p-2 transition duration-400 ease-in">
+            <button className="flex gap-1 items-center hover:text-blue-600 hover:bg-blue-200 rounded-full p-2 transition duration-400 ease-in">
               <RiShareLine className="text-lg"/>
             </button>
           </div>

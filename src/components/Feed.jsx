@@ -1,9 +1,24 @@
-import { RiGalleryLine, RiFileGifLine, RiChatPollLine, RiEmotionHappyLine, RiCalendarCheckLine, RiMapPin2Line } from "react-icons/ri"
+import { useState } from "react"
+import { RiGalleryLine } from "react-icons/ri"
 import Posts from "./Posts"
+import { storage } from "firebase"
+import { ref, uploadBytes } from "firebase/storage"
+import { v4 } from "uuid"
 
 const Feed = () => {
+  const [mediaUpload, setMediaUpload] = useState(null)
+
+  const uploadMedia = () => {
+    if(mediaUpload == null ) return
+
+    const imageRef = ref(storage, `images/${mediaUpload.name + v4()}`)
+    uploadBytes(imageRef, mediaUpload).then(() => {
+      alert("Image Uploaded")
+    })
+  }
+
   return (
-    <div className='w-[40vw] xl:w-[28vw] border-x-[1px] px-4 py-2'>
+    <div className='w-[40vw] xl:w-[26vw] border-x-[1px] px-4 py-2'>
       <h1 className='font-semibold text-center'>Enjoy your time here!</h1>
       <div className='flex gap-2 mt-7'>
         <img 
@@ -19,19 +34,18 @@ const Feed = () => {
         />
       </div>
       <div className="flex justify-between items-center mt-4">
-        <div className="flex gap-3 text-lg text-pink-500">
-          <RiGalleryLine />
-          <RiFileGifLine />
-          <RiChatPollLine />
-          <RiEmotionHappyLine />
-          <RiCalendarCheckLine />
-          <RiMapPin2Line />
-        </div>
+        <label 
+          className="flex items-center gap-2 px-2 py-1 bg-gray-200 hover:bg-gray-300 text-blue rounded-lg shadow-lg border cursor-pointer"
+          onClick={uploadMedia}
+        >
+          <RiGalleryLine className="text-pink-400"/>
+          <span className="text-xs text-gray-500">Upload file</span>
+          <input type='file' className="hidden" onChange={(e) => {setMediaUpload(e.target.files[0])}}/>
+        </label>
         <div>
           <button className="bg-pink-400 rounded-3xl text-xs text-white px-3 py-1">Tweet</button>
         </div>
       </div>
-      <Posts />
       <Posts />
     </div>
   )
