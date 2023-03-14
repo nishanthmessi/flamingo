@@ -1,19 +1,21 @@
 import { useState } from "react"
-import { RiGalleryLine } from "react-icons/ri"
+import { RiGalleryLine, RiUploadLine } from "react-icons/ri"
 import Posts from "./Posts"
 import { storage } from "../firebase"
-import { ref, uploadBytes } from "firebase/storage"
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import { v4 } from "uuid"
 
 const Feed = () => {
+  const [description, setDescription] = useState("")
   const [mediaUpload, setMediaUpload] = useState(null)
+  const [imageUrl, setImageUrl] = useState()
 
   const uploadMedia = () => {
     if(mediaUpload == null ) return
 
     const imageRef = ref(storage, `images/${mediaUpload.name + v4()}`)
-    uploadBytes(imageRef, mediaUpload).then(() => {
-      alert("Image Uploaded")
+    uploadBytes(imageRef, mediaUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => setImageUrl(url))
     })
   }
 
@@ -31,26 +33,28 @@ const Feed = () => {
           className="outline-none resize-none w-full bg-gray-100 rounded-lg p-1"
           placeholder="What's up"
           rows="4"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
         />
       </div>
-      <div className="flex justify-between items-center mt-4">
-        <label 
-          className="flex items-center gap-2 px-2 py-1 bg-gray-200 hover:bg-gray-300 text-blue rounded-lg shadow-lg border cursor-pointer"
-        >
+      <div className="flex justify-between items-center gap-2 mt-4">
+        <label className="flex items-center gap-2 px-2 py-1 text-blue">
           <RiGalleryLine className="text-pink-400"/>
-          <span className="text-xs text-gray-500">Upload file</span>
-          <input type='file' className="hidden" onChange={(e) => {setMediaUpload(e.target.files[0])}}/>
-        </label>
-        <div>
+          <input 
+            type='file' 
+            className="text-xs w-28" 
+            onChange={(e) => setMediaUpload(e.target.files[0])}
+          />
           <button 
-            className="bg-pink-400 rounded-3xl text-xs text-white px-3 py-1"
+            className="bg-blue-400 rounded-full text-xs text-white p-1" 
             onClick={uploadMedia}
           >
-            Tweet
+            upload file
           </button>
-        </div>
+          
+        </label>
+        <button className="bg-pink-400 rounded-3xl text-xs text-white px-3 py-1 hover:scale-110 transition duration-400">Tweet</button>
       </div>
-      <Posts />
       <Posts />
       <Posts />
     </div>

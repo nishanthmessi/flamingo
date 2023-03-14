@@ -8,4 +8,8 @@
   html, body {
     font-family: 'Poppins', sans-serif;
   }
+
+  input::file-selector-button {
+    display: none;
+  }
 }
