@@ -1,8 +1,23 @@
+import { useState, useEffect } from "react"
 import { RiHeart3Line, RiShareLine, RiMessage2Line, RiMenu3Line } from "react-icons/ri"
-import { listAll } from "firebase/storage"
+import Axios from "axios"
 
 const Posts = () => {
+  const [posts, setPosts] = useState()
+
+  useEffect(() => {
+    const getPosts = async () => {
+      const res = await Axios.get("/posts")
+      setPosts(res.data)
+    }
+    getPosts()
+  }, [])
+
+  console.log(posts)
+
   return (
+    posts.map((post) => (
+
     <div className="flex flex-col border-t-[1px] py-3 mt-4">
       <div className='flex items-center justify-between gap-3'>
         <img 
@@ -22,11 +37,10 @@ const Posts = () => {
 
       <div className='flex flex-col mt-2'>
         <img 
-          src="https://images.pexels.com/photos/10909386/pexels-photo-10909386.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load" 
-          alt="post-img"
+          src={post.mediaUrl}
           className="h-auto w-auto rounded-lg" 
         />
-        <p className='text-[.8rem] mt-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis perspiciatis eaque, debitis aliquam obcaecati facere?</p>
+        <p className='text-[.8rem] mt-2'>{post.description}</p>
 
         <div className="flex items-center justify-between mt-3">
           <div>
@@ -48,6 +62,8 @@ const Posts = () => {
         </div>
       </div>
     </div>
+
+    ))
   )
 }
 
