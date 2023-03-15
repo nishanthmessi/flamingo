@@ -2,7 +2,9 @@ require("dotenv").config()
 const express = require("express")
 const cors = require("cors")
 const mongoose = require("mongoose")
+
 const PostRoutes = require("./routes/post.routes")
+const UserRoutes = require("./routes/user.routes")
 
 const app = express()
 app.use(cors())
@@ -13,6 +15,7 @@ app.get('/', (req, res) => {
 })
 
 PostRoutes(app)
+UserRoutes(app)
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {
