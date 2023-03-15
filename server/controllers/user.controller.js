@@ -31,6 +31,7 @@ const signIn = async (req, res) => {
     }
     return res.status(STATUS.OK).json(response)
   } catch (error) {
+    console.log(error)
     return res.status(STATUS.INTERNAL_SERVER_ERROR).json(error)
   }
 }
