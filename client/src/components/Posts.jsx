@@ -35,7 +35,7 @@ const Posts = () => {
       <div className='flex flex-col mt-2'>
         <img 
           src={post.mediaUrl}
-          className="h-auto w-auto rounded-lg" 
+          className="h-auto w-auto rounded-lg max-h-[60vh] object-cover" 
         />
         <p className='text-[.8rem] mt-2'>{post.description}</p>
 

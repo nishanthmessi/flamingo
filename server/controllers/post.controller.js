@@ -7,7 +7,15 @@ const createPost = async (req, res) => {
     return res.status(STATUS.CREATED).json(response)
   } catch (error) {
     return res.status(STATUS.INTERNAL_SERVER_ERROR).json(error)
-    console.log(error)
+  }
+}
+
+const getPost = async (req, res) => {
+  try {
+    const response = await PostServices.getPost(req.params.id)
+    return res.status(STATUS.OK).json(response)
+  } catch (error) {
+    return res.status(STATUS.INTERNAL_SERVER_ERROR).json(error)
   }
 }
 
@@ -20,4 +28,22 @@ const getPosts = async (req, res) => {
   }
 }
 
-module.exports = { createPost, getPosts }
+const updatePost = async (req, res) => {
+  try {
+    const response = await PostServices.updatePost(req.params.id, req.body)
+    return res.status(STATUS.OK).json(response)
+  } catch (error) {
+    return res.status(STATUS.INTERNAL_SERVER_ERROR).json(error)
+  }
+}
+
+const deletePost = async (req, res) => {
+  try {
+    const response = await PostServices.deletePost(req.params.id)
+    return res.status(STATUS.OK).json(response)
+  } catch (error) {
+    return res.status(STATUS.INTERNAL_SERVER_ERROR).json(error)
+  }
+}
+
+module.exports = { createPost, getPost, getPosts, updatePost, deletePost }
