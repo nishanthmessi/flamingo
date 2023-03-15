@@ -4,11 +4,12 @@ import Posts from "./Posts"
 import { storage } from "../firebase"
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import { v4 } from "uuid"
+import Axios from "axios"
 
 const Feed = () => {
   const [description, setDescription] = useState("")
   const [mediaUpload, setMediaUpload] = useState(null)
-  const [imageUrl, setImageUrl] = useState()
+  const [imageUrl, setImageUrl] = useState("")
 
   const uploadMedia = () => {
     if(mediaUpload == null ) return
@@ -16,6 +17,18 @@ const Feed = () => {
     const imageRef = ref(storage, `images/${mediaUpload.name + v4()}`)
     uploadBytes(imageRef, mediaUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => setImageUrl(url))
+    })
+  }
+
+  const uploadPost = async () => {
+    const postData = {
+      description: description,
+      mediaUrl: imageUrl
+    }
+    await Axios.post("/post/create", postData).then(() => 
+      console.log("success")
+    ).catch((error) => { 
+      console.log(error)
     })
   }
 
@@ -52,7 +65,7 @@ const Feed = () => {
             upload file
           </button>
         </label>
-        <button className="bg-pink-400 rounded-3xl text-xs text-white px-3 py-1 hover:scale-110 transition duration-400">Tweet</button>
+        <button className="bg-pink-400 rounded-3xl text-xs text-white px-3 py-1 hover:scale-110 transition duration-400" onClick={uploadPost}>Tweet</button>
       </div>
       <Posts />
     </div>

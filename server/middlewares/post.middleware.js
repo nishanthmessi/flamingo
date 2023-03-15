@@ -5,9 +5,9 @@ const validatePost = (req, res, next) => {
     return res.status(STATUS.BAD_REQUEST).json()
   }
 
-  if(!req.body.mediaUrl) {
-    return res.status(STATUS.BAD_REQUEST).json()
-  }
+  // if(!req.body.mediaUrl) {
+  //   return res.status(STATUS.BAD_REQUEST).json()
+  // }
 
   next()
 }
