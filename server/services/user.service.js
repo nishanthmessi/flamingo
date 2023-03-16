@@ -26,10 +26,13 @@ const getUsers = async (filter) => {
   }
 }
 
-const getUserByName = async (name) => {
+const getUserById = async (id) => {
   try {
-    const response = await User.findOne({ name: name })
-    return response
+    const user = await User.findById(id)
+    if(!user) {
+      throw {err: "No user found for the given id", code: 404};
+    }
+    return user
   } catch (error) {
     console.log(error)
     throw { err: "Unable to get user", code: STATUS.NOT_FOUND }
@@ -38,12 +41,12 @@ const getUserByName = async (name) => {
 
 const getUserByEmail = async (email) => {
   try {
-    const response = await User.findOne({ email: email })
-    return response
+    const user = await User.findOne({ email: email })
+    return user
   } catch (error) {
     console.log(error)
     throw { err: "Unable to get user", code: STATUS.NOT_FOUND }
   }
 }
 
-module.exports = { createUser, getUsers, getUserByName, getUserByEmail}
+module.exports = { createUser, getUsers, getUserById, getUserByEmail}

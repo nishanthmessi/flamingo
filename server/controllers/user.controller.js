@@ -26,10 +26,12 @@ const signIn = async (req, res) => {
     )
 
     const response = {
+      id: user.id,
+      username: user.username,
       email: user.email,
-      token: token
+      token: token,
     }
-    return res.status(STATUS.OK).json(response)
+    return res.status(STATUS.OK).send(response)
   } catch (error) {
     console.log(error)
     return res.status(STATUS.INTERNAL_SERVER_ERROR).json(error)
