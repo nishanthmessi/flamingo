@@ -1,18 +1,18 @@
 import { Routes, Route } from "react-router-dom"
 import Axios from "axios"
-import Explore from "./components/Explore"
-import Feed from "./components/Feed"
-import NavBar from "./components/NavBar"
+import Home from "./pages/Home"
+import Login from "./components/Login"
+import Register from "./components/Register"
 
 const App = () => {
   Axios.defaults.baseURL = 'http://localhost:5001/api'
 
   return (
-    <div className="flex justify-center gap-8 mx-auto">  
-      <NavBar />
-      <Feed />
-      <Explore />
-    </div>
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/signup" element={<Register />} />
+      <Route path="/home" element={<Home />} />
+    </Routes>
   )
 }
 
