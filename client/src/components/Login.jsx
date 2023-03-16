@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Axios from 'axios'
 
 const Login = () => {
@@ -17,7 +17,7 @@ const Login = () => {
         password
       })
     } catch (error) {
-      
+      console.log(error)
     }
   }
 
@@ -41,6 +41,11 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button className="bg-gray-800 w-full py-2 rounded-xl text-sm text-gray-300">Login</button>
+
+          <div className="flex text-[.8rem] gap-1">
+            <p>Don't have an account?</p>
+            <Link to="/signup" className="text-blue-500 hover:underline">Sign Up</Link>
+          </div>
         </form>
       </div>
     </div>
