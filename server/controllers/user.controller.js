@@ -20,15 +20,13 @@ const signIn = async (req, res) => {
     }
 
     const token = jwt.sign(
-      {id:user.id, email: user.email},
+      {id:user.id},
       process.env.AUTH_KEY,
       {expiresIn: "24h"}
     )
 
     const response = {
       id: user.id,
-      username: user.username,
-      email: user.email,
       token: token,
     }
     return res.status(STATUS.OK).send(response)

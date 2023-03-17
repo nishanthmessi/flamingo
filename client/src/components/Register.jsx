@@ -32,7 +32,7 @@ const Register = () => {
         <h1 className="text-xl font-bold text-center mb-10">Flamingo</h1>
         <form 
           action="submit" 
-          className="flex flex-col justify-center items-center gap-4 w-[30vw]"
+          className="flex flex-col justify-center items-center gap-4 w-[50vw] sm:w-[20vw]"
           onSubmit={handleRegister}
         >
           <input 
