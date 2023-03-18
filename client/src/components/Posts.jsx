@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 import { RiHeart3Line, RiShareLine, RiMessage2Line, RiMenu3Line } from "react-icons/ri"
 import Axios from "axios"
+import { useDispatch } from 'react-redux'
+import { profileId } from '../features/profileId'
 
 const Posts = () => {
   const [posts, setPosts] = useState([])
+  const [userId, setUserId] = useState("")
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const getPosts = async () => {
@@ -13,6 +19,7 @@ const Posts = () => {
     getPosts()
   }, [])
 
+  // to get formatted date
   const timeElapsed = (createdAt) => {
     const timestamp = new Date(createdAt)
     return timestamp.toDateString()
@@ -31,10 +38,12 @@ const Posts = () => {
           alt="post-img"
           className="h-10 w-10 rounded-full object-cover cursor-pointer hover:outline hover:outline-[4px] hover:outline-pink-100 transition duration-400 ease-in" 
         />
-        <button className="text-center">
-          {/* <h1 className='font-semibold'>Sarah</h1> */}
-          <h2 className='text-sm font-semibold mb-1'>@{post.username}</h2>
-          <h2 className="text-xs">{timeElapsed(post.createdAt)}</h2>
+        {/* <button className="text-center" onClick={() => dispatch(profileId(post.userId))}> */}
+        <button className="text-center" onClick={() => dispatch(profileId(post.userId))}>
+          <Link to="/profile">
+            <h2 className='text-sm font-semibold mb-1'>@{post.username}</h2>
+            <h2 className="text-xs">{timeElapsed(post.createdAt)}</h2>
+          </Link>
         </button>
 
         <button className="flex gap-1 items-center hover:text-cyan-600 hover:bg-cyan-200 rounded-full p-2 transition duration-400 ease-in">

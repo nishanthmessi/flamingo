@@ -5,11 +5,14 @@ import { storage } from "../firebase"
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import { v4 } from "uuid"
 import Axios from "axios"
+import { useSelector } from 'react-redux'
 
 const Feed = () => {
   const [description, setDescription] = useState("")
   const [mediaUpload, setMediaUpload] = useState(null)
   const [imageUrl, setImageUrl] = useState("")
+
+  const user = useSelector((state) => state.user.value)
 
   const uploadMedia = () => {
     if(mediaUpload == null ) return
@@ -20,8 +23,11 @@ const Feed = () => {
     })
   }
 
+  // New post upload 
   const uploadPost = async () => {
     const postData = {
+      userId: user._id,
+      username: user.username,
       description: description,
       mediaUrl: imageUrl
     }

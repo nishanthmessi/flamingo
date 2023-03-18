@@ -1,22 +1,26 @@
 import { useState, useEffect } from 'react'
 import Axios from 'axios'
 import { useGetUserID } from "../hooks/useGetUserId"
+import { useDispatch } from 'react-redux'
+import { userDetails } from "../features/user"
 
 const Profile = () => {
   const [user, setUser] = useState("")
 
   const userId = useGetUserID()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const getUser = async () => {
       try {
         const response = await Axios.get(`/user/${userId}`)
         setUser(response.data)
+        dispatch(userDetails(response.data))
       } catch (error) {
         console.log(error)
-      } 
+      }
     }
-    getUser() 
+    getUser()
   }, [])
 
   return (
