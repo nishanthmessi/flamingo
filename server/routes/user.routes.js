@@ -11,6 +11,10 @@ const routes = (app) => {
     UserMiddleware.validateSigninRequest,
     UserController.signIn
   )
+
+  app.get("/api/user/:id",
+    UserController.getUserById
+  )
 }
 
 module.exports = routes

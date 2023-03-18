@@ -36,4 +36,13 @@ const signIn = async (req, res) => {
   }
 }
 
-module.exports = { signUp, signIn }
+const getUserById = async (req, res) => {
+  try {
+    const response = await UserService.getUserById(req.params.id)
+    return res.status(STATUS.OK).json(response)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+module.exports = { signUp, signIn, getUserById }

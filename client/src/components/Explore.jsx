@@ -1,9 +1,10 @@
 import { RiSearchLine } from "react-icons/ri"
+import ProfileCard from "./ProfileCard"
 import TrendingTags from "./TrendingTags"
 
 const Explore = () => {
   return (
-    <div className="hidden lg:block md:min-w-[14vw] mt-1.5">
+    <div className="hidden xl:block lg:min-w-[16vw] w-[14vw] mt-1.5">
       <div className="sticky top-2">
         <div className="flex items-center gap-2 p-1 px-3 rounded-2xl bg-gray-200 hover:bg-gray-50 text-gray-500 border-[1px] hover:border-[1px] hover:border-blue-300 hover:text-blue-300 ">
           <RiSearchLine />
@@ -13,6 +14,7 @@ const Explore = () => {
             placeholder='search twitter'
           />
         </div>
+      <ProfileCard />
       <TrendingTags />
       </div>
     </div>

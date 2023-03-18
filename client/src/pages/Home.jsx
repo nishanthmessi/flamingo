@@ -4,7 +4,7 @@ import NavBar from "../components/NavBar"
 
 const Home = () => {
   return (
-    <div className="flex justify-center gap-8 mx-auto">
+    <div className="flex justify-center gap-8">
       <NavBar />
       <Feed />
       <Explore />

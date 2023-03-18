@@ -8,10 +8,19 @@ const Posts = () => {
   useEffect(() => {
     const getPosts = async () => {
       const res = await Axios.get("/posts")
-      setPosts(res.data)
+      setPosts(res.data.reverse())
     }
     getPosts()
   }, [])
+
+  const timeElapsed = (createdAt) => {
+    const timestamp = new Date(createdAt)
+    return timestamp.toDateString()
+    // const now = new Date()
+    // const elapsedTimeInMs = now.getTime() - timestamp.getTime()
+    // const elapsedTimeInMinutes = Math.round(elapsedTimeInMs / (1000 * 60))
+    // return elapsedTimeInMinutes
+  }
 
   return (
     posts.map((post, id) => (
@@ -24,7 +33,8 @@ const Posts = () => {
         />
         <button className="text-center">
           {/* <h1 className='font-semibold'>Sarah</h1> */}
-          <h2 className='text-sm font-semibold'>@{post.username}</h2>
+          <h2 className='text-sm font-semibold mb-1'>@{post.username}</h2>
+          <h2 className="text-xs">{timeElapsed(post.createdAt)}</h2>
         </button>
 
         <button className="flex gap-1 items-center hover:text-cyan-600 hover:bg-cyan-200 rounded-full p-2 transition duration-400 ease-in">
@@ -37,7 +47,7 @@ const Posts = () => {
           src={post.mediaUrl}
           className="h-auto w-auto rounded-lg max-h-[60vh] object-cover" 
         />
-        <p className='text-[.8rem] mt-2'>{post.description}</p>
+        <p className='text-[.9rem] mt-2'>{post.description}</p>
 
         <div className="flex items-center justify-between mt-3">
           <div>

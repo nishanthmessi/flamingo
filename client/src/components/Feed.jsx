@@ -33,7 +33,7 @@ const Feed = () => {
   }
 
   return (
-    <div className='w-[40vw] xl:w-[26vw] border-x-[1px] px-4 py-2'>
+    <div className='w-[40vw] xl:w-[30vw] 2xl:w-[26vw] border-x-[1px] px-4 py-2'>
       <h1 className='font-semibold text-center'>Enjoy your time here!</h1>
       <div className='flex gap-2 mt-7'>
         <img 
