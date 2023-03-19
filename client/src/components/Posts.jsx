@@ -1,44 +1,26 @@
-import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { RiHeart3Line, RiShareLine, RiMessage2Line, RiMenu3Line } from "react-icons/ri"
-import Axios from "axios"
 import { useDispatch } from 'react-redux'
 import { profileId } from '../features/profileId'
 
-const Posts = () => {
-  const [posts, setPosts] = useState([])
-  const [userId, setUserId] = useState("")
-
+const Posts = ({ posts }) => {
   const dispatch = useDispatch()
-
-  useEffect(() => {
-    const getPosts = async () => {
-      const res = await Axios.get("/posts")
-      setPosts(res.data.reverse())
-    }
-    getPosts()
-  }, [])
 
   // to get formatted date
   const timeElapsed = (createdAt) => {
     const timestamp = new Date(createdAt)
     return timestamp.toDateString()
-    // const now = new Date()
-    // const elapsedTimeInMs = now.getTime() - timestamp.getTime()
-    // const elapsedTimeInMinutes = Math.round(elapsedTimeInMs / (1000 * 60))
-    // return elapsedTimeInMinutes
   }
 
   return (
-    posts.map((post, id) => (
-    <div key={id} className="flex flex-col border-t-[1px] py-3 mt-4">
+    posts.map((post) => (
+    <div key={post._id} className="flex flex-col border-t-[1px] py-3 mt-4">
       <div className='flex items-center justify-between gap-3'>
         <img 
           src="https://images.pexels.com/photos/10909386/pexels-photo-10909386.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load" 
           alt="post-img"
           className="h-10 w-10 rounded-full object-cover cursor-pointer hover:outline hover:outline-[4px] hover:outline-pink-100 transition duration-400 ease-in" 
         />
-        {/* <button className="text-center" onClick={() => dispatch(profileId(post.userId))}> */}
         <button className="text-center" onClick={() => dispatch(profileId(post.userId))}>
           <Link to="/profile">
             <h2 className='text-sm font-semibold mb-1'>@{post.username}</h2>

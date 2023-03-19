@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { RiGalleryLine } from "react-icons/ri"
 import Posts from "./Posts"
 import { storage } from "../firebase"
@@ -8,11 +8,21 @@ import Axios from "axios"
 import { useSelector } from 'react-redux'
 
 const Feed = () => {
+  const [posts, setPosts] = useState([])
   const [description, setDescription] = useState("")
   const [mediaUpload, setMediaUpload] = useState(null)
   const [imageUrl, setImageUrl] = useState("")
-
+  
   const user = useSelector((state) => state.user.value)
+
+  const getPosts = async () => {
+    const res = await Axios.get("/posts")
+    setPosts(res.data.reverse())
+  }
+
+  useEffect(() => {
+    getPosts()
+  }, [])
 
   const uploadMedia = () => {
     if(mediaUpload == null ) return
@@ -31,9 +41,10 @@ const Feed = () => {
       description: description,
       mediaUrl: imageUrl
     }
-    await Axios.post("/post/create", postData).then(() => 
-      console.log("success")
-    ).catch((error) => { 
+    await Axios.post("/post/create", postData).then(() => {
+      getPosts()
+    })
+    .catch((error) => { 
       console.log(error)
     })
   }
@@ -73,7 +84,7 @@ const Feed = () => {
         </label>
         <button className="bg-pink-400 rounded-3xl text-xs text-white px-3 py-1 hover:scale-110 transition duration-400" onClick={uploadPost}>Tweet</button>
       </div>
-      <Posts />
+      <Posts posts={posts}/>
     </div>
   )
 }
