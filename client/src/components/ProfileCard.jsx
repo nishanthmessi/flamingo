@@ -23,6 +23,11 @@ const Profile = () => {
     getUser()
   }, [])
 
+  const logout = () => {
+    window.localStorage.setItem("userId", "")
+    window.localStorage.setItem("access_token", "")
+  }
+
   return (
     <div className="bg-gray-100 mt-4 rounded-xl p-2">
       <div className="flex flex-col text-center gap-3">
@@ -46,8 +51,11 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className="">
-          <button className="bg-red-400 hover:bg-red-500 rounded-2xl text-white text-sm py-1 px-2 transition duration-300">
+        <div>
+          <button
+            className="bg-red-400 hover:bg-red-500 rounded-2xl text-white text-sm py-1 px-2 transition duration-300"
+            onClick={logout}
+          >
             Sign Out
           </button>
         </div>

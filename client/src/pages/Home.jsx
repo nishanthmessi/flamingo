@@ -1,3 +1,4 @@
+import { Routes, Route } from "react-router-dom"
 import Explore from "../components/Explore"
 import Feed from "../components/Feed"
 import NavBar from "../components/NavBar"
