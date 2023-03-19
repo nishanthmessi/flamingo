@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react"
 import Axios from "axios"
+import { useSelector } from "react-redux"
 import Posts from "../components/Posts"
-import { useGetUserID } from "../hooks/useGetUserId"
 
 const UserProfile = () => {
   const [userProfile, setUserProfile] = useState("")
   const [userPosts, setUserPosts] = useState([])
 
-  const userId = useGetUserID()
+  const profileID = useSelector((state) => state.profileId.value)
 
   useEffect(() => {
     const getUser = async () => {
       try {
-        const response = await Axios.get(`/user/${userId}`)
+        const response = await Axios.get(`/user/${profileID}`)
         setUserProfile(response.data)
       } catch (error) {
         console.log(error)
@@ -21,7 +21,7 @@ const UserProfile = () => {
 
     const getUserPosts = async () => {
       try {
-        const response = await Axios.get(`/posts/${userId}`)
+        const response = await Axios.get(`/posts/${profileID}`)
         setUserPosts(response.data)
       } catch (error) {
         console.log(error)

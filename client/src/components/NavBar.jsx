@@ -47,7 +47,7 @@ const NavBar = () => {
           </div>
         </Link>
 
-        <Link to="/profile" className="flex items-center">
+        <Link to="/userprofile" className="flex items-center">
           <div className="flex items-center gap-4 hover:bg-gray-200 rounded-3xl px-2 py-2 transition duration-300 ease-in mb-2">
             <RiUserLine className="text-2xl" />
             <h1 className="font-medium hidden 2xl:flex">Profile</h1>
