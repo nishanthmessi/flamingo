@@ -7,13 +7,13 @@ const createPost = async (postData) => {
     return post
   } catch (error) {
     console.log(error)
-    throw {error: "Unable to create post", code: STATUS.UNPROCESSABLE_ENTITY}
+    throw { error: "Unable to create post", code: STATUS.UNPROCESSABLE_ENTITY }
   }
 }
 
-const getPost = async (id) => {
+const getPost = async (userId) => {
   try {
-    const post = await Post.findById(id)
+    const post = await Post.find({ userId: userId })
     return post
   } catch (error) {
     console.log(error)
@@ -25,14 +25,36 @@ const getPosts = async (filter) => {
   let query = {}
 
   try {
-    if(filter.id) {
+    if (filter.id) {
       query.id = filter.id
-    }   
+    }
     let posts = await Post.find(query)
     return posts
   } catch (error) {
     console.log(error)
     throw { error: "Unable to get posts", code: STATUS.NOT_FOUND }
+  }
+}
+
+const getPostsByUsername = async (username) => {
+  try {
+    const response = await Post.find({
+      username: username,
+    })
+    return response
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const getPostsByUserId = async (userId) => {
+  try {
+    const response = await Post.find({
+      userId: userId,
+    })
+    return response
+  } catch (error) {
+    console.log(error)
   }
 }
 
@@ -42,24 +64,32 @@ const updatePost = async (id, data) => {
     return post
   } catch (error) {
     console.log(error)
-    throw {error : "Unable to update post", code: STATUS.UNPROCESSABLE_ENTITY}
+    throw { error: "Unable to update post", code: STATUS.UNPROCESSABLE_ENTITY }
   }
 }
 
 const deletePost = async (id) => {
   try {
     const response = await Post.findByIdAndDelete(id)
-    if(!response) {
+    if (!response) {
       throw {
         error: "No Post found for the id provided",
-        code: STATUS.NOT_FOUND
+        code: STATUS.NOT_FOUND,
       }
     }
     return response
   } catch (error) {
     console.log(error)
-    throw {error : "Unable to delete post", code: STATUS.UNPROCESSABLE_ENTITY}
+    throw { error: "Unable to delete post", code: STATUS.UNPROCESSABLE_ENTITY }
   }
 }
 
-module.exports = { createPost, getPost, getPosts, updatePost, deletePost }
+module.exports = {
+  createPost,
+  getPost,
+  getPosts,
+  getPostsByUsername,
+  getPostsByUserId,
+  updatePost,
+  deletePost,
+}

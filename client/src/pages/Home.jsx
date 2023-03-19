@@ -1,8 +1,6 @@
 import Explore from "../components/Explore"
 import Feed from "../components/Feed"
 import NavBar from "../components/NavBar"
-import { useDispatch } from 'react-redux'
-import { userDetails } from "../features/user"
 
 const Home = () => {
   return (

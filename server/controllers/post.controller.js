@@ -19,6 +19,24 @@ const getPost = async (req, res) => {
   }
 }
 
+const getPostByUsername = async (req, res) => {
+  try {
+    const response = await PostServices.getPostsByUsername(req.params.username)
+    return res.status(STATUS.OK).json(response)
+  } catch (error) {
+    return res.status(STATUS.INTERNAL_SERVER_ERROR).json(error)
+  }
+}
+
+const getPostByUserId = async (req, res) => {
+  try {
+    const response = await PostServices.getPostsByUserId(req.params.userId)
+    return res.status(STATUS.OK).json(response)
+  } catch (error) {
+    return res.status(STATUS.INTERNAL_SERVER_ERROR).json(error)
+  }
+}
+
 const getPosts = async (req, res) => {
   try {
     const response = await PostServices.getPosts(req.query)
@@ -46,4 +64,12 @@ const deletePost = async (req, res) => {
   }
 }
 
-module.exports = { createPost, getPost, getPosts, updatePost, deletePost }
+module.exports = {
+  createPost,
+  getPost,
+  getPosts,
+  getPostByUsername,
+  getPostByUserId,
+  updatePost,
+  deletePost,
+}
