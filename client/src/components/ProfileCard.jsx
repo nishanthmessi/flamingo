@@ -3,12 +3,15 @@ import Axios from "axios"
 import { useGetUserID } from "../hooks/useGetUserId"
 import { useDispatch } from "react-redux"
 import { userDetails } from "../features/user"
+import { useNavigate } from "react-router-dom"
 
 const Profile = () => {
   const [user, setUser] = useState("")
 
   const userId = useGetUserID()
+
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   useEffect(() => {
     const getUser = async () => {
@@ -26,6 +29,7 @@ const Profile = () => {
   const logout = () => {
     window.localStorage.setItem("userId", "")
     window.localStorage.setItem("access_token", "")
+    navigate("/")
   }
 
   return (

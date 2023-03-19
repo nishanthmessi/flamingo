@@ -11,7 +11,7 @@ import Profiles from "./components/Profiles"
 const App = () => {
   Axios.defaults.baseURL = "http://localhost:5001/api"
 
-  //const verifyAuth = window.localStorage.getItem("access_token")
+  const verifyAuth = window.localStorage.getItem("access_token")
 
   return (
     <div className="flex justify-center gap-8">
