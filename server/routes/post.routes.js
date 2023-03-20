@@ -9,6 +9,7 @@ const routes = (app) => {
   )
   app.get("/api/posts", postController.getPosts)
   app.get("/api/posts/:userId", postController.getPostByUserId)
+  app.patch("/api/postlikes/:postId", postController.updateLikes)
 }
 
 module.exports = routes

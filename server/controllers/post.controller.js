@@ -55,6 +55,15 @@ const updatePost = async (req, res) => {
   }
 }
 
+const updateLikes = async (req, res) => {
+  try {
+    const response = await PostServices.updateLikes(req.params.postId)
+    return res.status(STATUS.OK).json(response)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 const deletePost = async (req, res) => {
   try {
     const response = await PostServices.deletePost(req.params.id)
@@ -71,5 +80,6 @@ module.exports = {
   getPostByUsername,
   getPostByUserId,
   updatePost,
+  updateLikes,
   deletePost,
 }

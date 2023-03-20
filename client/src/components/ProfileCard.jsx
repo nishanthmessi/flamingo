@@ -27,8 +27,8 @@ const Profile = () => {
   }, [])
 
   const logout = () => {
-    window.localStorage.setItem("userId", "")
-    window.localStorage.setItem("access_token", "")
+    window.localStorage.removeItem("userId")
+    window.localStorage.removeItem("access_token")
     navigate("/")
   }
 
@@ -38,7 +38,7 @@ const Profile = () => {
         <div className="flex justify-center px-2">
           <div className="flex flex-col justify-center items-center gap-2">
             <img
-              src="https://images.pexels.com/photos/10909386/pexels-photo-10909386.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load"
+              src={user.profileImage}
               alt="post-img"
               className="h-20 w-20 rounded-full object-cover"
             />

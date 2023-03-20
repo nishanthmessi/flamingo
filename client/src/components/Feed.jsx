@@ -38,12 +38,15 @@ const Feed = () => {
     const postData = {
       userId: user._id,
       username: user.username,
+      profileImage: user.profileImage,
       description: description,
       mediaUrl: imageUrl,
     }
     await Axios.post("/post/create", postData)
       .then(() => {
         getPosts()
+        setDescription("")
+        setImageUrl("")
       })
       .catch((error) => {
         console.log(error)
@@ -54,11 +57,11 @@ const Feed = () => {
     <div className="w-[40vw] xl:w-[30vw] 2xl:w-[26vw] border-x-[1px] px-4 py-2">
       <h1 className="font-semibold text-center">Enjoy your time here!</h1>
       <div className="flex gap-2 mt-7">
-        <img
+        {/* <img
           src="https://images.pexels.com/photos/10909386/pexels-photo-10909386.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load"
           alt="post-img"
           className="h-10 w-10 rounded-full object-cover"
-        />
+        /> */}
         <textarea
           type="text"
           className="outline-none resize-none w-full bg-gray-100 rounded-lg p-1"

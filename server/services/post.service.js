@@ -58,10 +58,25 @@ const getPostsByUserId = async (userId) => {
   }
 }
 
+const updateLikes = async (postId) => {
+  try {
+    const post = await Post.findById(postId)
+    const updatePost = await Post.findByIdAndUpdate(
+      postId,
+      { like: post.likes },
+      { new: true }
+    )
+    console.log(updatePost)
+    return updatePost
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 const updatePost = async (id, data) => {
   try {
-    const post = await Post.findByIdAndUpdate(id, data)
-    return post
+    const response = await Post.findByIdAndUpdate(id, data)
+    return response
   } catch (error) {
     console.log(error)
     throw { error: "Unable to update post", code: STATUS.UNPROCESSABLE_ENTITY }
@@ -90,6 +105,7 @@ module.exports = {
   getPosts,
   getPostsByUsername,
   getPostsByUserId,
+  updateLikes,
   updatePost,
   deletePost,
 }

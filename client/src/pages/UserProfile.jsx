@@ -22,7 +22,7 @@ const UserProfile = () => {
     const getUserPosts = async () => {
       try {
         const response = await Axios.get(`/posts/${userId}`)
-        setUserPosts(response.data)
+        setUserPosts(response.data.reverse())
       } catch (error) {
         console.log(error)
       }
@@ -39,7 +39,7 @@ const UserProfile = () => {
         <>
           <div className="flex flex-col gap-2 mt-7">
             <img
-              src="https://images.pexels.com/photos/10909386/pexels-photo-10909386.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load"
+              src={userProfile.profileImage}
               alt="post-img"
               className="h-20 w-20 rounded-full object-cover"
             />
