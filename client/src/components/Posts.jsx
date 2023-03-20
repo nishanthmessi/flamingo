@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Link } from "react-router-dom"
 import {
   RiHeart3Line,
@@ -9,17 +10,14 @@ import { useDispatch } from "react-redux"
 import { profileId } from "../features/profileId"
 
 const Posts = ({ posts }) => {
+  const [liked, setLiked] = useState(false)
+
   const dispatch = useDispatch()
 
   // to get formatted date
   const timeElapsed = (createdAt) => {
     const timestamp = new Date(createdAt)
     return timestamp.toDateString()
-  }
-
-  const handleLikes = () => {
-    if (liked === true) {
-    }
   }
 
   return posts.map((post) => (

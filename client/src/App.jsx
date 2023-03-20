@@ -23,7 +23,7 @@ const App = () => {
         <Route path="/userProfile" element={<UserProfile />} />
         <Route path="/profile" element={<Profiles />} />
       </Routes>
-      <Explore />
+      {/* <Explore /> */}
     </div>
   )
 }

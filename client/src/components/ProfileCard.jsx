@@ -3,7 +3,7 @@ import Axios from "axios"
 import { useGetUserID } from "../hooks/useGetUserId"
 import { useDispatch } from "react-redux"
 import { userDetails } from "../features/user"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 const Profile = () => {
   const [user, setUser] = useState("")
@@ -39,13 +39,16 @@ const Profile = () => {
           <div className="flex flex-col justify-center items-center gap-2">
             <img
               src={user.profileImage}
-              alt="post-img"
+              alt="profile-img"
               className="h-20 w-20 rounded-full object-cover"
             />
             <div className="flex flex-col justify-center">
-              <h2 className="text-[.8rem] font-semibold cursor-pointer hover:underline">
+              <Link
+                to="/userprofile"
+                className="text-[.8rem] font-semibold cursor-pointer hover:underline"
+              >
                 {user.name}
-              </h2>
+              </Link>
               {/* <h2 className='text-xs font-medium'>@{user.username}</h2> */}
               <p className="text-sm text-cutoff">
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit.

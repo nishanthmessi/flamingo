@@ -7,7 +7,7 @@ const createUser = async (data) => {
     return response
   } catch (error) {
     console.log(error)
-    throw {err: "Unable to create user", code: STATUS.UNPROCESSABLE_ENTITY}
+    throw { err: "Unable to create user", code: STATUS.UNPROCESSABLE_ENTITY }
   }
 }
 
@@ -15,11 +15,11 @@ const getUsers = async (filter) => {
   let query = {}
 
   try {
-    if(filter.id) {
+    if (filter.id) {
       query.id = filter.id
-    }   
-    const posts = await User.find(query)
-    return posts
+    }
+    const users = await User.find(query)
+    return users
   } catch (error) {
     console.log(error)
     throw { err: "Unable to get users", code: STATUS.NOT_FOUND }
@@ -29,8 +29,8 @@ const getUsers = async (filter) => {
 const getUserById = async (id) => {
   try {
     const user = await User.findById(id)
-    if(!user) {
-      throw {err: "No user found for the given id", code: 404};
+    if (!user) {
+      throw { err: "No user found for the given id", code: 404 }
     }
     return user
   } catch (error) {
@@ -49,4 +49,4 @@ const getUserByEmail = async (email) => {
   }
 }
 
-module.exports = { createUser, getUsers, getUserById, getUserByEmail}
+module.exports = { createUser, getUsers, getUserById, getUserByEmail }
