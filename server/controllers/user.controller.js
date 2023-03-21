@@ -52,4 +52,13 @@ const getAllUsers = async (req, res) => {
   }
 }
 
-module.exports = { signUp, signIn, getUserById, getAllUsers }
+const getRandomUsers = async (req, res) => {
+  try {
+    const response = await UserService.getRandomUsers(req.query)
+    return res.status(STATUS.OK).json(response)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+module.exports = { signUp, signIn, getUserById, getAllUsers, getRandomUsers }

@@ -17,6 +17,7 @@ const routes = (app) => {
   app.get("/api/user/:id", UserController.getUserById)
 
   app.get("/api/users", UserController.getAllUsers)
+  app.get("/api/users/random", UserController.getRandomUsers)
 }
 
 module.exports = routes

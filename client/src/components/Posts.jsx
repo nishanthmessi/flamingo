@@ -23,19 +23,21 @@ const Posts = ({ posts }) => {
   return posts.map((post) => (
     <div key={post._id} className="flex flex-col border-t-[1px] py-3 mt-4">
       <div className="flex items-center justify-between gap-3">
-        {!post.profileImage ? (
-          <img
-            src="https://images.pexels.com/photos/10909386/pexels-photo-10909386.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load"
-            alt="post-img"
-            className="h-10 w-10 rounded-full object-cover cursor-pointer hover:outline hover:outline-[4px] hover:outline-pink-100 transition duration-400 ease-in"
-          />
-        ) : (
-          <img
-            src={post.profileImage}
-            alt="post-img"
-            className="h-10 w-10 rounded-full object-cover cursor-pointer hover:outline hover:outline-[4px] hover:outline-pink-100 transition duration-400 ease-in"
-          />
-        )}
+        <Link to="/profile" onClick={() => dispatch(profileId(post.userId))}>
+          {!post.profileImage ? (
+            <img
+              src="https://images.pexels.com/photos/10909386/pexels-photo-10909386.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load"
+              alt="post-img"
+              className="h-10 w-10 rounded-full object-cover cursor-pointer"
+            />
+          ) : (
+            <img
+              src={post.profileImage}
+              alt="post-img"
+              className="h-10 w-10 rounded-full object-cover cursor-pointer"
+            />
+          )}
+        </Link>
         <button
           className="text-center"
           onClick={() => dispatch(profileId(post.userId))}

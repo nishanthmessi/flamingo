@@ -26,6 +26,31 @@ const getUsers = async (filter) => {
   }
 }
 
+const getRandomUsers = async (filter) => {
+  let query = {}
+
+  try {
+    if (filter.id) {
+      query.id = filter.id
+    }
+    const selected = []
+    const users = await User.find(query)
+
+    while (selected.length < 3) {
+      const randomIndex = Math.floor(Math.random() * users.length)
+      const randomElement = users[randomIndex]
+
+      if (!selected.includes(randomElement)) {
+        selected.push(randomElement)
+      }
+    }
+    return selected
+  } catch (error) {
+    console.log(error)
+    throw { err: "Unable to get users", code: STATUS.NOT_FOUND }
+  }
+}
+
 const getUserById = async (id) => {
   try {
     const user = await User.findById(id)
@@ -49,4 +74,10 @@ const getUserByEmail = async (email) => {
   }
 }
 
-module.exports = { createUser, getUsers, getUserById, getUserByEmail }
+module.exports = {
+  createUser,
+  getUsers,
+  getUserById,
+  getUserByEmail,
+  getRandomUsers,
+}

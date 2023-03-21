@@ -37,15 +37,17 @@ const Profile = () => {
       <div className="flex flex-col text-center gap-3">
         <div className="flex justify-center px-2">
           <div className="flex flex-col justify-center items-center gap-2">
-            <img
-              src={user.profileImage}
-              alt="profile-img"
-              className="h-20 w-20 rounded-full object-cover"
-            />
+            <Link to="/userprofile">
+              <img
+                src={user.profileImage}
+                alt="profile-img"
+                className="h-20 w-20 rounded-full object-cover"
+              />
+            </Link>
             <div className="flex flex-col justify-center">
               <Link
                 to="/userprofile"
-                className="text-[.8rem] font-semibold cursor-pointer hover:underline"
+                className="text-md font-semibold cursor-pointer hover:underline"
               >
                 {user.name}
               </Link>

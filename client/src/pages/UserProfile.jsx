@@ -34,7 +34,7 @@ const UserProfile = () => {
 
   return (
     <>
-      <div className="w-[40vw] xl:w-[30vw] 2xl:w-[26vw] border-x-[1px] px-4 py-2">
+      <div className="w-[40vw] xl:w-[30vw] 2xl:w-[28vw] border-x-[1px] px-4 py-2">
         {!userProfile ? (
           "loading"
         ) : (
@@ -54,7 +54,7 @@ const UserProfile = () => {
           </>
         )}
       </div>
-      <div className="w-[16vw]">
+      <div className="lg:min-w-[16vw] w-[18vw] hidden xl:block">
         <UsersList />
       </div>
     </>

@@ -6,7 +6,7 @@ const UsersList = () => {
 
   useEffect(() => {
     const getUsers = async () => {
-      const res = await Axios.get("/users")
+      const res = await Axios.get("/users/random")
       setUsers(res.data)
     }
     getUsers()
@@ -28,7 +28,7 @@ const UsersList = () => {
               />
               <div className="flex flex-col">
                 <h2 className="text-[.8rem] font-semibold">{user.name}</h2>
-                <h2 className="text-xs font-medium">@tommy20</h2>
+                <h2 className="text-xs font-medium">@{user.username}</h2>
               </div>
             </div>
 
