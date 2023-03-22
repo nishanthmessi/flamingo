@@ -5,14 +5,13 @@ import {
   RiNotification2Line,
   RiUserLine,
   RiBookmarkLine,
-  RiMenuAddLine,
 } from "react-icons/ri"
 import Logo from "../assets/main-logo.png"
 
 const NavBar = () => {
   return (
-    <div className="flex flex-col justify-start items-center 2xl:w-[16vw]">
-      <div className="sticky top-1">
+    <div className="flex flex-col justify-start items-end xl:mr-10 2xl:w-[20vw]">
+      <div className="fixed top-2">
         <div className="mb-4">
           <button className="hover:bg-pink-100 p-1.5 rounded-full transition duration-400 ease-in">
             <Link to="/home">
@@ -55,13 +54,6 @@ const NavBar = () => {
           <div className="flex items-center gap-4 hover:bg-gray-200 rounded-3xl px-2 py-2 transition duration-300 ease-in mb-2">
             <RiUserLine className="text-2xl" />
             <h1 className="font-medium text-lg hidden 2xl:flex">Profile</h1>
-          </div>
-        </Link>
-
-        <Link to="/" className="flex items-center">
-          <div className="flex items-center gap-4 hover:bg-gray-200 rounded-3xl px-2 py-2 transition duration-300 ease-in mb-2">
-            <RiMenuAddLine className="text-2xl" />
-            <h1 className="font-medium text-lg hidden 2xl:flex">More</h1>
           </div>
         </Link>
 

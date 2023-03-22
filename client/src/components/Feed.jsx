@@ -95,7 +95,7 @@ const Feed = () => {
             Tweet
           </button>
         </div>
-        <Posts posts={posts} />
+        {!posts ? <div>loading...</div> : <Posts posts={posts} />}
       </div>
       <Explore />
     </>

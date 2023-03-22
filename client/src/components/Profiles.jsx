@@ -34,7 +34,7 @@ const UserProfile = () => {
 
   return (
     <>
-      <div className="w-[40vw] xl:w-[30vw] 2xl:w-[26vw] border-x-[1px] px-4 py-2">
+      <div className="w-[40vw] 2xl:w-[28vw] border-x-[1px] px-4 py-2">
         {!userProfile ? (
           <div>loading...</div>
         ) : (
@@ -43,7 +43,7 @@ const UserProfile = () => {
               <img
                 src={userProfile.profileImage}
                 alt="post-img"
-                className="h-20 w-20 rounded-full object-cover"
+                className="h-24 w-24 rounded-full object-cover"
               />
               <div>
                 <h1 className="font-bold">{userProfile.name}</h1>
@@ -54,7 +54,7 @@ const UserProfile = () => {
           </>
         )}
       </div>
-      <div className="w-[16vw]">
+      <div className="w-[20vw]">
         <UsersList />
       </div>
     </>

@@ -36,7 +36,9 @@ const UserProfile = () => {
     <>
       <div className="w-[40vw] xl:w-[30vw] 2xl:w-[28vw] border-x-[1px] px-4 py-2">
         {!userProfile ? (
-          "loading"
+          <div className="flex justify-center items-center h-screen">
+            <h1>loading...</h1>
+          </div>
         ) : (
           <>
             <div className="flex flex-col gap-2 mt-7">
@@ -54,7 +56,7 @@ const UserProfile = () => {
           </>
         )}
       </div>
-      <div className="lg:min-w-[16vw] w-[18vw] hidden xl:block">
+      <div className="lg:min-w-[16vw] w-[20vw] hidden xl:block mt-2">
         <UsersList />
       </div>
     </>
