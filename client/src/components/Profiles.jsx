@@ -3,12 +3,14 @@ import Axios from "axios"
 import { useSelector } from "react-redux"
 import Posts from "../components/Posts"
 import UsersList from "./UsersList"
+import { RiSearchLine, RiArrowLeftLine } from "react-icons/ri"
+import { Link } from "react-router-dom"
 
 const UserProfile = () => {
   const [userProfile, setUserProfile] = useState("")
   const [userPosts, setUserPosts] = useState([])
 
-  const profileID = useSelector((state) => state.profileId.value)
+  const profileID = useSelector((state) => state.profile.value)
 
   useEffect(() => {
     const getUser = async () => {
@@ -34,16 +36,32 @@ const UserProfile = () => {
 
   return (
     <>
-      <div className="w-[40vw] 2xl:w-[28vw] border-x-[1px] px-4 py-2">
+      <div className="w-[40vw] 2xl:w-[28vw] border-x-[1px]">
+        <div className="flex items-center gap-4 px-2 sticky -top-1 backdrop-blur-md">
+          <Link
+            to="/home"
+            className="hover:bg-gray-200 hover:rounded-full p-2 cursor-pointer"
+          >
+            <RiArrowLeftLine className="text-xl" />
+          </Link>
+          <h1 className="font-semibold text-xl py-3">{userProfile.name}</h1>
+        </div>
         {!userProfile ? (
           <div>loading...</div>
         ) : (
           <>
-            <div className="flex flex-col gap-2 mt-7">
+            <div className="">
               <img
                 src={userProfile.profileImage}
                 alt="post-img"
-                className="h-24 w-24 rounded-full object-cover"
+                className="w-full object-cover"
+              />
+            </div>
+            <div className="flex flex-col gap-2 -mt-16 px-4">
+              <img
+                src={userProfile.profileImage}
+                alt="post-img"
+                className="h-32 w-32 rounded-full object-cover outline outline-gray-50"
               />
               <div>
                 <h1 className="font-bold">{userProfile.name}</h1>
@@ -54,8 +72,10 @@ const UserProfile = () => {
           </>
         )}
       </div>
-      <div className="w-[20vw]">
-        <UsersList />
+      <div className="w-[18vw]">
+        <div className="sticky top-4">
+          <UsersList />
+        </div>
       </div>
     </>
   )

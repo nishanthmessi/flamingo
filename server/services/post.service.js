@@ -11,9 +11,9 @@ const createPost = async (postData) => {
   }
 }
 
-const getPost = async (userId) => {
+const getPost = async (id) => {
   try {
-    const post = await Post.find({ userId: userId })
+    const post = await Post.findById(id)
     return post
   } catch (error) {
     console.log(error)

@@ -8,6 +8,7 @@ const routes = (app) => {
     postController.createPost
   )
   app.get("/api/posts", postController.getPosts)
+  app.get("/api/post/:id", postController.getPost)
   app.get("/api/posts/:userId", postController.getPostByUserId)
   app.patch("/api/postlikes/:postId", postController.updateLikes)
 }

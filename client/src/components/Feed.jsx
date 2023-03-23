@@ -56,9 +56,11 @@ const Feed = () => {
 
   return (
     <>
-      <div className="w-[40vw] xl:w-[30vw] 2xl:w-[28vw] border-x-[1px] px-4 py-2">
-        <h1 className="font-semibold text-center">Enjoy your time here!</h1>
-        <div className="flex gap-2 mt-7">
+      <div className="w-[40vw] xl:w-[30vw] 2xl:w-[28vw] border-x-[1px] py-2">
+        <div className="sticky top-0 backdrop-blur-md backdrop-saturate-125 bg-white/40 w-full p-4">
+          <h1 className="font-semibold text-center">Enjoy your time here!</h1>
+        </div>
+        <div className="flex gap-2 mt-7 px-4">
           {/* <img
           src="https://images.pexels.com/photos/10909386/pexels-photo-10909386.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load"
           alt="post-img"
@@ -73,7 +75,7 @@ const Feed = () => {
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
-        <div className="flex justify-between items-center gap-2 mt-4">
+        <div className="flex justify-between items-center gap-2 my-4 px-4">
           <label className="flex items-center gap-2 px-2 py-1 text-blue">
             <RiGalleryLine className="text-pink-400" />
             <input
