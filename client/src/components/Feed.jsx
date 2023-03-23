@@ -7,6 +7,7 @@ import { v4 } from "uuid"
 import Axios from "axios"
 import { useSelector } from "react-redux"
 import Explore from "./Explore"
+import Spinner from "./Spinner"
 
 const Feed = () => {
   const [posts, setPosts] = useState([])
@@ -97,7 +98,15 @@ const Feed = () => {
             Tweet
           </button>
         </div>
-        {!posts ? <div>loading...</div> : <Posts posts={posts} />}
+        {!posts ? (
+          <div className="flex justify-center items-center h-screen">
+            <div className="h-[60vh]">
+              <Spinner />
+            </div>
+          </div>
+        ) : (
+          <Posts posts={posts} />
+        )}
       </div>
       <Explore />
     </>

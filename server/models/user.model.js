@@ -30,6 +30,10 @@ const userSchema = new mongoose.Schema(
       default:
         "https://firebasestorage.googleapis.com/v0/b/flamingo-react-app.appspot.com/o/images%2Fprofile_images%2Fuser.png?alt=media&token=3e56c8d6-aea4-4031-9e75-9b4294d971f0",
     },
+    coverImage: {
+      type: String,
+      required: false,
+    },
   },
   { timestamps: true }
 )
