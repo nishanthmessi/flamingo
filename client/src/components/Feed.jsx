@@ -95,7 +95,7 @@ const Feed = () => {
             className="bg-pink-400 rounded-3xl text-xs text-white px-3 py-1 hover:scale-110 transition duration-400"
             onClick={uploadPost}
           >
-            Tweet
+            chirp
           </button>
         </div>
         {!posts ? (

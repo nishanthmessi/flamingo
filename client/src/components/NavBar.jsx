@@ -58,7 +58,7 @@ const NavBar = () => {
         </Link>
 
         <button className="bg-pink-400 rounded-3xl text-white hidden 2xl:flex 2xl:px-16 py-2 my-5">
-          Tweet
+          Chirp!
         </button>
       </div>
     </div>
