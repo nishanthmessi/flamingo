@@ -56,7 +56,7 @@ const Post = () => {
               </Link>
               <h1 className="font-semibold text-xl py-3">Back</h1>
             </div>
-            <div key={postData._id} className="flex flex-col px-4 py-3">
+            <div key={postData._id} className="flex flex-col px-4 mt-3">
               <div className="flex items-center justify-between gap-3">
                 <Link
                   to="/profile"
@@ -117,7 +117,7 @@ const Post = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex items-center gap-3 py-2">
+              <div className="flex items-center gap-3 py-3">
                 <img
                   src={user.profileImage}
                   alt="post-img"
@@ -125,7 +125,7 @@ const Post = () => {
                 />
                 <textarea
                   type="text"
-                  className="outline-none resize-none w-full p-1"
+                  className="outline-none resize-none w-full p-1 bg-gray-100 rounded-lg"
                   placeholder="Share your reply..."
                   rows="2"
                 ></textarea>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { RiGalleryLine } from "react-icons/ri"
+import { RiGalleryLine, RiUserSmileLine } from "react-icons/ri"
 import Posts from "./Posts"
 import { storage } from "../firebase"
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
@@ -8,12 +8,14 @@ import Axios from "axios"
 import { useSelector } from "react-redux"
 import Explore from "./Explore"
 import Spinner from "./Spinner"
+import EmojiPicker from "emoji-picker-react"
 
 const Feed = () => {
   const [posts, setPosts] = useState([])
   const [description, setDescription] = useState("")
   const [mediaUpload, setMediaUpload] = useState(null)
   const [imageUrl, setImageUrl] = useState("")
+  const [emojiPicker, setEmojiPicker] = useState(false)
 
   const user = useSelector((state) => state.user.value)
 
@@ -91,6 +93,19 @@ const Feed = () => {
               upload file
             </button>
           </label>
+
+          {/* Emoji Picker */}
+          {/* <RiUserSmileLine
+            className="text-pink-400"
+            onClick={() => setEmojiPicker(true)}
+          />
+          <div
+            className={
+              emojiPicker == true ? "flex absolute bottom-60" : "hidden"
+            }
+          >
+            <EmojiPicker />
+          </div> */}
           <button
             className="bg-pink-400 rounded-3xl text-xs text-white px-3 py-1 hover:scale-110 transition duration-400"
             onClick={uploadPost}
