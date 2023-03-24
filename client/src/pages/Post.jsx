@@ -10,16 +10,17 @@ import {
   RiMessage2Line,
   RiShareLine,
 } from "react-icons/ri"
-import { useSelector } from "react-redux"
 import { profileId } from "../features/profileId"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import Spinner from "../components/Spinner"
 
 const Post = () => {
   const [postData, setPostData] = useState({})
 
   const dispatch = useDispatch()
+
   const postId = useSelector((state) => state.post.value)
+  const user = useSelector((state) => state.user.value)
 
   const getPost = async () => {
     const res = await Axios.get(`post/${postId}`)
@@ -116,13 +117,9 @@ const Post = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex items-center gap-3 py-4">
+              <div className="flex items-center gap-3 py-2">
                 <img
-                  src={
-                    !postData.profileImage
-                      ? "https://images.pexels.com/photos/10909386/pexels-photo-10909386.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load"
-                      : postData.profileImage
-                  }
+                  src={user.profileImage}
                   alt="post-img"
                   className="h-12 w-12 rounded-full object-cover cursor-pointer hover:opacity-90"
                 />
@@ -137,6 +134,7 @@ const Post = () => {
                 </button>
               </div>
             </div>
+            <div className="border-b-[1px]"></div>
           </div>
         </>
       )}
