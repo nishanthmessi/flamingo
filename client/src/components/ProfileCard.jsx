@@ -62,7 +62,7 @@ const Profile = () => {
 
         <div>
           <button
-            className="bg-gray-900 hover:bg-gray-800 rounded-2xl text-white text-sm py-1 px-2 transition duration-300"
+            className="bg-gray-900 hover:bg-gray-800 rounded-2xl text-white text-xs py-1 px-2 transition duration-300"
             onClick={logout}
           >
             Sign Out

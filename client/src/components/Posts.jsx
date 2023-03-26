@@ -24,7 +24,7 @@ const Posts = ({ posts }) => {
       key={post._id}
       className="flex flex-col border-t-[1px] px-4 py-3 hover:bg-gray-100 transition duration-200 cursor-pointer"
     >
-      <Link to="/post" onClick={() => dispatch(postId(post._id))}>
+      <Link to={`/post/${post._id}`} onClick={() => dispatch(postId(post._id))}>
         <div className="flex items-center justify-between gap-3">
           <Link to="/profile" onClick={() => dispatch(profileId(post.userId))}>
             <img
@@ -47,9 +47,9 @@ const Posts = ({ posts }) => {
             </Link>
           </button>
 
-          <button className="flex gap-1 items-center hover:text-cyan-600 hover:bg-cyan-200 rounded-full p-2 transition duration-400 ease-in">
+          <Link className="flex gap-1 items-center hover:text-cyan-600 hover:bg-cyan-200 rounded-full p-2 transition duration-400 ease-in">
             <RiBookmarkLine className="text-lg" />
-          </button>
+          </Link>
         </div>
 
         <div className="flex flex-col mt-2">

@@ -11,6 +11,7 @@ const routes = (app) => {
   app.get("/api/post/:id", postController.getPost)
   app.get("/api/posts/:userId", postController.getPostByUserId)
   app.patch("/api/postlikes/:postId", postController.updateLikes)
+  app.delete("/api/post/:id", postController.deletePost)
 }
 
 module.exports = routes

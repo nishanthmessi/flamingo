@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Axios from "axios"
 import UsersList from "../components/UsersList"
 import {
@@ -21,6 +21,7 @@ const Post = () => {
   const [viewOptions, setViewOptions] = useState(false)
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const postId = useSelector((state) => state.post.value)
   const user = useSelector((state) => state.user.value)
@@ -37,6 +38,12 @@ const Post = () => {
   const timeElapsed = (createdAt) => {
     const timestamp = new Date(createdAt)
     return timestamp.toDateString()
+  }
+
+  // Delete Post
+  const handleDeletePost = async () => {
+    await Axios.delete(`post/${postId}`)
+    navigate("/home")
   }
 
   return (
@@ -105,7 +112,10 @@ const Post = () => {
                     }
                   >
                     <ul className="p-2 text-sm text-gray-700">
-                      <li className="cursor-pointer flex items-center px-2 gap-2 hover:bg-gray-100 text-red-700">
+                      <li
+                        className="cursor-pointer flex items-center px-2 gap-2 hover:bg-gray-100 text-red-700"
+                        onClick={handleDeletePost}
+                      >
                         <RiDeleteBinLine />
                         <p className="py-2 ">Delete</p>
                       </li>
