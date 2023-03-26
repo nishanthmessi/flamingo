@@ -9,6 +9,8 @@ import {
   RiHeart3Line,
   RiMessage2Line,
   RiShareLine,
+  RiDeleteBinLine,
+  RiEditLine,
 } from "react-icons/ri"
 import { profileId } from "../features/profileId"
 import { useDispatch, useSelector } from "react-redux"
@@ -16,6 +18,7 @@ import Spinner from "../components/Spinner"
 
 const Post = () => {
   const [postData, setPostData] = useState({})
+  const [viewOptions, setViewOptions] = useState(false)
 
   const dispatch = useDispatch()
 
@@ -86,9 +89,29 @@ const Post = () => {
                   </Link>
                 </button>
 
-                <button className="flex gap-1 items-center hover:text-cyan-600 hover:bg-cyan-200 rounded-full p-2 transition duration-400 ease-in">
-                  <RiMenu3Line className="text-lg" />
-                </button>
+                <div className="">
+                  <button
+                    className="flex gap-1 items-center hover:text-cyan-600 hover:bg-cyan-200 rounded-full p-2 transition duration-400 ease-in"
+                    onClick={() => setViewOptions(!viewOptions)}
+                  >
+                    <RiMenu3Line className="text-lg" />
+                  </button>
+
+                  <div
+                    className={
+                      viewOptions
+                        ? "absolute -ml-20 z-10 bg-gray-50 rounded-lg border shadow-xl"
+                        : "hidden"
+                    }
+                  >
+                    <ul className="p-2 text-sm text-gray-700">
+                      <li className="cursor-pointer flex items-center px-2 gap-2 hover:bg-gray-100 text-red-700">
+                        <RiDeleteBinLine />
+                        <p className="py-2 ">Delete</p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
 
               <div className="flex flex-col mt-2">

@@ -37,7 +37,7 @@ const UserProfile = () => {
   return (
     <>
       <div className="w-[40vw] 2xl:w-[28vw] border-x-[1px]">
-        <div className="flex items-center gap-4 px-2 sticky -top-1 backdrop-blur-md">
+        <div className="flex items-center gap-4 px-2 sticky -top-1 backdrop-blur-md backdrop-saturate-125 bg-white/40">
           <Link
             to="/home"
             className="hover:bg-gray-200 hover:rounded-full p-2 cursor-pointer"

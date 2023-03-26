@@ -4,7 +4,7 @@ import {
   RiHeart3Line,
   RiShareLine,
   RiMessage2Line,
-  RiMenu3Line,
+  RiBookmarkLine,
 } from "react-icons/ri"
 import { useDispatch } from "react-redux"
 import { profileId } from "../features/profileId"
@@ -48,7 +48,7 @@ const Posts = ({ posts }) => {
           </button>
 
           <button className="flex gap-1 items-center hover:text-cyan-600 hover:bg-cyan-200 rounded-full p-2 transition duration-400 ease-in">
-            <RiMenu3Line className="text-lg" />
+            <RiBookmarkLine className="text-lg" />
           </button>
         </div>
 
@@ -61,20 +61,20 @@ const Posts = ({ posts }) => {
 
           <div className="flex items-center justify-between mt-3">
             <div>
-              <button className="flex gap-1 items-center hover:text-red-600 hover:bg-red-200 rounded-2xl p-2 transition duration-400 ease-in">
+              <Link className="flex gap-1 items-center hover:text-red-600 hover:bg-red-200 rounded-2xl p-2 transition duration-400 ease-in">
                 <RiHeart3Line className="text-lg" />
                 <p className="text-sm">{post.likes}</p>
-              </button>
+              </Link>
             </div>
 
             <div className="flex gap-6">
-              <button className="flex gap-1 items-center hover:text-green-600 hover:bg-green-200 rounded-full p-2 transition duration-400 ease-in">
+              <Link className="flex gap-1 items-center hover:text-green-600 hover:bg-green-200 rounded-full p-2 transition duration-400 ease-in">
                 <RiMessage2Line className="text-lg" />
-              </button>
+              </Link>
 
-              <button className="flex gap-1 items-center hover:text-blue-600 hover:bg-blue-200 rounded-full p-2 transition duration-400 ease-in">
+              <Link className="flex gap-1 items-center hover:text-blue-600 hover:bg-blue-200 rounded-full p-2 transition duration-400 ease-in">
                 <RiShareLine className="text-lg" />
-              </button>
+              </Link>
             </div>
           </div>
         </div>
