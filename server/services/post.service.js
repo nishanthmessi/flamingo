@@ -1,4 +1,5 @@
 const Post = require("../models/post.model")
+const User = require("../models/user.model")
 const { STATUS } = require("../utils/statuscodes")
 
 const createPost = async (postData) => {
@@ -73,6 +74,19 @@ const updateLikes = async (postId) => {
   }
 }
 
+const updateSavedPost = async (postId, userId) => {
+  try {
+    const post = await Post.findById(postId)
+    const user = await User.findById(userId)
+
+    user.savedPosts.push(post)
+    await user.save()
+    return user.savedPosts
+  } catch (error) {
+    throw { error: "Unable to save post", code: STATUS.UNPROCESSABLE_ENTITY }
+  }
+}
+
 const updatePost = async (id, data) => {
   try {
     const response = await Post.findByIdAndUpdate(id, data)
@@ -106,6 +120,7 @@ module.exports = {
   getPostsByUsername,
   getPostsByUserId,
   updateLikes,
+  updateSavedPost,
   updatePost,
   deletePost,
 }

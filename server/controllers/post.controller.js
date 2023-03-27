@@ -64,6 +64,18 @@ const updateLikes = async (req, res) => {
   }
 }
 
+const updateSavedPost = async (req, res) => {
+  try {
+    const response = await PostServices.updateSavedPost(
+      req.body.postId,
+      req.body.userId
+    )
+    return res.status(STATUS.OK).json(response)
+  } catch (error) {
+    return res.status(STATUS.INTERNAL_SERVER_ERROR).json(error)
+  }
+}
+
 const deletePost = async (req, res) => {
   try {
     const response = await PostServices.deletePost(req.params.id)
@@ -81,5 +93,6 @@ module.exports = {
   getPostByUserId,
   updatePost,
   updateLikes,
+  updateSavedPost,
   deletePost,
 }

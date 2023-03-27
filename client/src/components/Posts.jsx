@@ -5,6 +5,7 @@ import {
   RiShareLine,
   RiMessage2Line,
   RiBookmarkLine,
+  RiBookmarkFill,
 } from "react-icons/ri"
 import { useDispatch } from "react-redux"
 import { profileId } from "../features/profileId"
@@ -49,6 +50,7 @@ const Posts = ({ posts }) => {
 
           <Link className="flex gap-1 items-center hover:text-cyan-600 hover:bg-cyan-200 rounded-full p-2 transition duration-400 ease-in">
             <RiBookmarkLine className="text-lg" />
+            {/* <RiBookmarkFill className="text-lg" /> */}
           </Link>
         </div>
 

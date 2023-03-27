@@ -10,7 +10,7 @@ import {
   RiMessage2Line,
   RiShareLine,
   RiDeleteBinLine,
-  RiEditLine,
+  RiBookmarkLine,
 } from "react-icons/ri"
 import { profileId } from "../features/profileId"
 import { useDispatch, useSelector } from "react-redux"
@@ -96,32 +96,39 @@ const Post = () => {
                   </Link>
                 </button>
 
-                <div className="">
-                  <button
-                    className="flex gap-1 items-center hover:text-cyan-600 hover:bg-cyan-200 rounded-full p-2 transition duration-400 ease-in"
-                    onClick={() => setViewOptions(!viewOptions)}
-                  >
-                    <RiMenu3Line className="text-lg" />
-                  </button>
-
-                  <div
-                    className={
-                      viewOptions
-                        ? "absolute -ml-20 z-10 bg-gray-50 rounded-lg border shadow-xl"
-                        : "hidden"
-                    }
-                  >
-                    <ul className="p-2 text-sm text-gray-700">
-                      <li
-                        className="cursor-pointer flex items-center px-2 gap-2 hover:bg-gray-100 text-red-700"
-                        onClick={handleDeletePost}
-                      >
-                        <RiDeleteBinLine />
-                        <p className="py-2 ">Delete</p>
-                      </li>
-                    </ul>
+                {postData.userId == user._id ? (
+                  <div className="">
+                    <button
+                      className="flex gap-1 items-center hover:text-cyan-600 hover:bg-cyan-200 rounded-full p-2 transition duration-400 ease-in"
+                      onClick={() => setViewOptions(!viewOptions)}
+                    >
+                      <RiMenu3Line className="text-lg" />
+                    </button>
+                    <div
+                      className={
+                        viewOptions
+                          ? "absolute -ml-20 z-10 bg-gray-50 rounded-lg border shadow-xl"
+                          : "hidden"
+                      }
+                    >
+                      <ul className="p-2 text-sm text-gray-700">
+                        <li
+                          className="cursor-pointer flex items-center px-2 gap-2 hover:bg-gray-100 text-red-700"
+                          onClick={handleDeletePost}
+                        >
+                          <RiDeleteBinLine />
+                          <p className="py-2 ">Delete</p>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  <div>
+                    <button className="flex gap-1 items-center hover:text-cyan-600 hover:bg-cyan-200 rounded-full p-2 transition duration-400 ease-in">
+                      <RiBookmarkLine className="text-xl" />
+                    </button>
+                  </div>
+                )}
               </div>
 
               <div className="flex flex-col mt-2">
@@ -140,6 +147,14 @@ const Post = () => {
                   </div>
 
                   <div className="flex gap-6">
+                    {postData.userId == user._id ? (
+                      <button className="flex gap-1 items-center hover:text-green-600 hover:bg-green-200 rounded-full p-2 transition duration-400 ease-in">
+                        <RiBookmarkLine className="text-xl" />
+                      </button>
+                    ) : (
+                      <></>
+                    )}
+
                     <button className="flex gap-1 items-center hover:text-green-600 hover:bg-green-200 rounded-full p-2 transition duration-400 ease-in">
                       <RiMessage2Line className="text-xl" />
                     </button>

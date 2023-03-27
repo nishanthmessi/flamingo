@@ -12,7 +12,7 @@ import Spinner from "./Spinner"
 const Feed = () => {
   const [posts, setPosts] = useState([])
   const [description, setDescription] = useState("")
-  const [mediaUpload, setMediaUpload] = useState(null)
+  const [mediaUpload, setMediaUpload] = useState("")
   const [imageUrl, setImageUrl] = useState("")
 
   const user = useSelector((state) => state.user.value)
@@ -35,6 +35,8 @@ const Feed = () => {
     })
   }
 
+  if (mediaUpload != null) uploadMedia()
+
   // New post upload
   const uploadPost = async () => {
     const postData = {
@@ -49,6 +51,7 @@ const Feed = () => {
         getPosts()
         setDescription("")
         setImageUrl("")
+        setMediaUpload(null)
       })
       .catch((error) => {
         console.log(error)
@@ -84,12 +87,12 @@ const Feed = () => {
               className="text-xs w-28"
               onChange={(e) => setMediaUpload(e.target.files[0])}
             />
-            <button
+            {/* <button
               className="bg-blue-400 rounded-full text-xs text-white p-1"
               onClick={uploadMedia}
             >
               upload file
-            </button>
+            </button> */}
           </label>
           <button
             className="bg-pink-400 rounded-3xl text-xs text-white px-3 py-1 hover:scale-110 transition duration-400"

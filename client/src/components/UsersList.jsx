@@ -22,9 +22,8 @@ const UsersList = () => {
       <div className="flex flex-col gap-3">
         <h1 className="text-sm font-bold">People you might follow</h1>
         {users.map((user) => (
-          <Link to="/profile">
+          <Link to="/profile" key={user._id}>
             <div
-              key={user._id}
               className="flex justify-between items-center px-2"
               onClick={() => dispatch(profileId(user._id))}
             >
