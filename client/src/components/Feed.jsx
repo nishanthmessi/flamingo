@@ -35,7 +35,11 @@ const Feed = () => {
     })
   }
 
-  if (mediaUpload != null) uploadMedia()
+  if (mediaUpload == "") {
+    console.log("No media upload")
+  } else {
+    uploadMedia()
+  }
 
   // New post upload
   const uploadPost = async () => {
@@ -85,7 +89,9 @@ const Feed = () => {
             <input
               type="file"
               className="text-xs w-28"
-              onChange={(e) => setMediaUpload(e.target.files[0])}
+              onChange={(e) => {
+                setMediaUpload(e.target.files[0])
+              }}
             />
             {/* <button
               className="bg-blue-400 rounded-full text-xs text-white p-1"

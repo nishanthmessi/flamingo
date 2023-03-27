@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import Axios from "axios"
 import {
   RiHeart3Line,
   RiShareLine,
@@ -7,17 +8,36 @@ import {
   RiBookmarkLine,
   RiBookmarkFill,
 } from "react-icons/ri"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { profileId } from "../features/profileId"
 import { postId } from "../features/post"
 
 const Posts = ({ posts }) => {
+  const [savedPosts, setSavedPosts] = useState([])
+  console.log(savedPosts)
+
   const dispatch = useDispatch()
+  const user = useSelector((state) => state.user.value)
+
+  // const isPostSaved = (id) => savedPosts.includes(id)
 
   // to get formatted date
   const timeElapsed = (createdAt) => {
     const timestamp = new Date(createdAt)
     return timestamp.toDateString()
+  }
+
+  const savePost = async (postId) => {
+    try {
+      const savedPost = await Axios.put("/save_post", {
+        postId,
+        userId: user._id,
+      })
+      console.log(savedPost)
+      //setSavedPosts(savedPost)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return posts.map((post) => (
@@ -48,7 +68,14 @@ const Posts = ({ posts }) => {
             </Link>
           </button>
 
-          <Link className="flex gap-1 items-center hover:text-cyan-600 hover:bg-cyan-200 rounded-full p-2 transition duration-400 ease-in">
+          {/* <Link className="flex gap-1 items-center hover:text-cyan-600 hover:bg-cyan-200 rounded-full p-2 transition duration-400 ease-in">
+              <RiBookmarkFill className="text-lg" />
+            </Link> */}
+
+          <Link
+            className="flex gap-1 items-center hover:text-cyan-600 hover:bg-cyan-200 rounded-full p-2 transition duration-400 ease-in"
+            onClick={() => savePost(post._id)}
+          >
             <RiBookmarkLine className="text-lg" />
             {/* <RiBookmarkFill className="text-lg" /> */}
           </Link>
