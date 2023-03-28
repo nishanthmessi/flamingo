@@ -13,6 +13,8 @@ import { profileId } from "../features/profileId"
 import { postId } from "../features/post"
 
 const Posts = ({ posts, fetchSavedPosts }) => {
+  const [postSaved, setPostSaved] = useState(false)
+
   const dispatch = useDispatch()
 
   const user = useSelector((state) => state.user.value)
@@ -67,18 +69,16 @@ const Posts = ({ posts, fetchSavedPosts }) => {
             </Link>
           </button>
 
-          {isPostSaved(post._id) ? (
-            <Link className="flex gap-1 items-center hover:text-cyan-600 hover:bg-cyan-200 rounded-full p-2 transition duration-400 ease-in">
-              <RiBookmarkFill className="text-lg" />
-            </Link>
-          ) : (
-            <Link
-              className="flex gap-1 items-center hover:text-cyan-600 hover:bg-cyan-200 rounded-full p-2 transition duration-400 ease-in"
-              onClick={() => savePost(post._id)}
-            >
-              <RiBookmarkLine className="text-lg" />
-            </Link>
-          )}
+          {/* <Link className="flex gap-1 items-center hover:text-cyan-600 hover:bg-cyan-200 rounded-full p-2 transition duration-400 ease-in">
+            <RiBookmarkFill className="text-lg" />
+          </Link> */}
+
+          <Link
+            className="flex gap-1 items-center hover:text-cyan-600 hover:bg-cyan-200 rounded-full p-2 transition duration-400 ease-in"
+            onClick={() => savePost(post._id)}
+          >
+            <RiBookmarkLine className="text-lg" />
+          </Link>
         </div>
 
         <div className="flex flex-col mt-2">
