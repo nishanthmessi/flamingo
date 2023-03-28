@@ -5,16 +5,18 @@ import { storage } from "../firebase"
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import { v4 } from "uuid"
 import Axios from "axios"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import Explore from "./Explore"
-import Spinner from "./Spinner"
+import { savedPosts } from "../features/post"
 
 const Feed = () => {
   const [posts, setPosts] = useState([])
   const [description, setDescription] = useState("")
   const [mediaUpload, setMediaUpload] = useState("")
   const [imageUrl, setImageUrl] = useState("")
+  // const [savedPosts, setSavedPosts] = useState([])
 
+  const dispatch = useDispatch()
   const user = useSelector((state) => state.user.value)
 
   const getPosts = async () => {
@@ -22,8 +24,19 @@ const Feed = () => {
     setPosts(res.data.reverse())
   }
 
+  const fetchSavedPosts = async () => {
+    try {
+      const response = await Axios.get(`/saved_posts/ids/${user._id}`)
+      // setSavedPosts(response.data.savedPosts)
+      dispatch(savedPosts(response.data.savedPosts))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     getPosts()
+    fetchSavedPosts()
   }, [])
 
   const uploadMedia = () => {
@@ -69,11 +82,6 @@ const Feed = () => {
           <h1 className="font-semibold text-center">Enjoy your time here!</h1>
         </div>
         <div className="flex gap-2 mt-7 px-4">
-          {/* <img
-          src="https://images.pexels.com/photos/10909386/pexels-photo-10909386.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load"
-          alt="post-img"
-          className="h-10 w-10 rounded-full object-cover"
-        /> */}
           <textarea
             type="text"
             className="outline-none resize-none w-full bg-gray-100 rounded-lg p-1"
@@ -93,12 +101,6 @@ const Feed = () => {
                 setMediaUpload(e.target.files[0])
               }}
             />
-            {/* <button
-              className="bg-blue-400 rounded-full text-xs text-white p-1"
-              onClick={uploadMedia}
-            >
-              upload file
-            </button> */}
           </label>
           <button
             className="bg-pink-400 rounded-3xl text-xs text-white px-3 py-1 hover:scale-110 transition duration-400"
@@ -108,13 +110,13 @@ const Feed = () => {
           </button>
         </div>
         {!posts ? (
-          <div className="flex justify-center items-center h-screen">
-            <div className="h-[60vh]">
+          <div className="flex justify-center items-center h-[75vh]">
+            <div className="h-[70vh]">
               <Spinner />
             </div>
           </div>
         ) : (
-          <Posts posts={posts} />
+          <Posts posts={posts} fetchSavedPosts={fetchSavedPosts} />
         )}
       </div>
       <Explore />

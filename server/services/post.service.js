@@ -59,6 +59,27 @@ const getPostsByUserId = async (userId) => {
   }
 }
 
+const getSavedPostsId = async (userId) => {
+  try {
+    const user = await User.findById(userId)
+    return user
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const getSavedPosts = async (userId) => {
+  try {
+    const user = await User.findById(userId)
+    const savedPosts = await Post.find({
+      _id: { $in: user.savedPosts },
+    })
+    return savedPosts
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 const updateLikes = async (postId) => {
   try {
     const post = await Post.findById(postId)
@@ -119,6 +140,8 @@ module.exports = {
   getPosts,
   getPostsByUsername,
   getPostsByUserId,
+  getSavedPostsId,
+  getSavedPosts,
   updateLikes,
   updateSavedPost,
   updatePost,

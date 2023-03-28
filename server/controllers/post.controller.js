@@ -46,6 +46,24 @@ const getPosts = async (req, res) => {
   }
 }
 
+const getSavedPostsId = async (req, res) => {
+  try {
+    const response = await PostServices.getSavedPostsId(req.params.userId)
+    return res.status(STATUS.OK).json({ savedPosts: response?.savedPosts })
+  } catch (error) {
+    return res.status(STATUS.INTERNAL_SERVER_ERROR).json(error)
+  }
+}
+
+const getSavedPosts = async (req, res) => {
+  try {
+    const response = await PostServices.getSavedPosts(req.body.userId)
+    return res.status(STATUS.OK).json(response)
+  } catch (error) {
+    return res.status(STATUS.INTERNAL_SERVER_ERROR).json(error)
+  }
+}
+
 const updatePost = async (req, res) => {
   try {
     const response = await PostServices.updatePost(req.params.id, req.body)
@@ -91,6 +109,8 @@ module.exports = {
   getPosts,
   getPostByUsername,
   getPostByUserId,
+  getSavedPostsId,
+  getSavedPosts,
   updatePost,
   updateLikes,
   updateSavedPost,
