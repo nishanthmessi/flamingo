@@ -11,6 +11,7 @@ import {
   RiShareLine,
   RiDeleteBinLine,
   RiBookmarkLine,
+  RiBookmarkFill,
 } from "react-icons/ri"
 import { profileId } from "../features/profileId"
 import { useDispatch, useSelector } from "react-redux"
@@ -19,20 +20,32 @@ import Spinner from "../components/Spinner"
 const Post = () => {
   const [postData, setPostData] = useState({})
   const [viewOptions, setViewOptions] = useState(false)
+  const [savedPosts, setSavedPosts] = useState([])
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const postId = useSelector((state) => state.post.value)
+  const currentPostId = useSelector((state) => state.post.value)
   const user = useSelector((state) => state.user.value)
 
   const getPost = async () => {
-    const res = await Axios.get(`post/${postId}`)
+    const res = await Axios.get(`post/${currentPostId}`)
     setPostData(res.data)
+  }
+
+  //
+  const fetchSavedPosts = async () => {
+    try {
+      const response = await Axios.get(`/saved_posts/ids/${user._id}`)
+      setSavedPosts(response.data.savedPosts)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   useEffect(() => {
     getPost()
+    fetchSavedPosts()
   }, [])
 
   const timeElapsed = (createdAt) => {
@@ -42,9 +55,24 @@ const Post = () => {
 
   // Delete Post
   const handleDeletePost = async () => {
-    await Axios.delete(`post/${postId}`)
+    await Axios.delete(`post/${currentPostId}`)
     navigate("/home")
   }
+
+  // Save Post
+  const savePost = async (postId) => {
+    try {
+      await Axios.put("/save_post", {
+        postId,
+        userId: user._id,
+      })
+      fetchSavedPosts()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const isPostSaved = (id) => savedPosts.includes(id)
 
   return (
     <>
@@ -124,9 +152,18 @@ const Post = () => {
                   </div>
                 ) : (
                   <div>
-                    <button className="flex gap-1 items-center hover:text-cyan-600 hover:bg-cyan-200 rounded-full p-2 transition duration-400 ease-in">
-                      <RiBookmarkLine className="text-xl" />
-                    </button>
+                    {isPostSaved(postData._id) ? (
+                      <Link className="flex gap-1 items-center hover:text-cyan-600 hover:bg-cyan-200 rounded-full p-2 transition duration-400 ease-in">
+                        <RiBookmarkFill className="text-lg" />
+                      </Link>
+                    ) : (
+                      <Link
+                        className="flex gap-1 items-center hover:text-cyan-600 hover:bg-cyan-200 rounded-full p-2 transition duration-400 ease-in"
+                        onClick={() => savePost(postData._id)}
+                      >
+                        <RiBookmarkLine className="text-lg" />
+                      </Link>
+                    )}
                   </div>
                 )}
               </div>
@@ -148,9 +185,20 @@ const Post = () => {
 
                   <div className="flex gap-6">
                     {postData.userId == user._id ? (
-                      <button className="flex gap-1 items-center hover:text-green-600 hover:bg-green-200 rounded-full p-2 transition duration-400 ease-in">
-                        <RiBookmarkLine className="text-xl" />
-                      </button>
+                      <div>
+                        {isPostSaved(postData._id) ? (
+                          <Link className="flex gap-1 items-center hover:text-cyan-600 hover:bg-cyan-200 rounded-full p-2 transition duration-400 ease-in">
+                            <RiBookmarkFill className="text-lg" />
+                          </Link>
+                        ) : (
+                          <Link
+                            className="flex gap-1 items-center hover:text-cyan-600 hover:bg-cyan-200 rounded-full p-2 transition duration-400 ease-in"
+                            onClick={() => savePost(postData._id)}
+                          >
+                            <RiBookmarkLine className="text-lg" />
+                          </Link>
+                        )}
+                      </div>
                     ) : (
                       <></>
                     )}

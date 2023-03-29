@@ -5,18 +5,15 @@ import { storage } from "../firebase"
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import { v4 } from "uuid"
 import Axios from "axios"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import Explore from "./Explore"
-import { savedPosts } from "../features/post"
 
 const Feed = () => {
   const [posts, setPosts] = useState([])
   const [description, setDescription] = useState("")
   const [mediaUpload, setMediaUpload] = useState("")
   const [imageUrl, setImageUrl] = useState("")
-  // const [savedPosts, setSavedPosts] = useState([])
 
-  const dispatch = useDispatch()
   const user = useSelector((state) => state.user.value)
 
   const getPosts = async () => {
@@ -24,19 +21,8 @@ const Feed = () => {
     setPosts(res.data.reverse())
   }
 
-  const fetchSavedPosts = async () => {
-    try {
-      const response = await Axios.get(`/saved_posts/ids/${user._id}`)
-      // setSavedPosts(response.data.savedPosts)
-      dispatch(savedPosts(response.data.savedPosts))
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
   useEffect(() => {
     getPosts()
-    fetchSavedPosts()
   }, [])
 
   const uploadMedia = () => {
@@ -116,7 +102,7 @@ const Feed = () => {
             </div>
           </div>
         ) : (
-          <Posts posts={posts} fetchSavedPosts={fetchSavedPosts} />
+          <Posts posts={posts} />
         )}
       </div>
       <Explore />

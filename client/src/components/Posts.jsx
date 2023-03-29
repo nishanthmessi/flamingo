@@ -1,45 +1,19 @@
-import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import Axios from "axios"
 import {
   RiHeart3Line,
   RiShareLine,
   RiMessage2Line,
-  RiBookmarkLine,
-  RiBookmarkFill,
+  RiFlagLine,
 } from "react-icons/ri"
-import { useDispatch, useSelector } from "react-redux"
 import { profileId } from "../features/profileId"
 import { postId } from "../features/post"
 
-const Posts = ({ posts, fetchSavedPosts }) => {
-  const [postSaved, setPostSaved] = useState(false)
-
-  const dispatch = useDispatch()
-
-  const user = useSelector((state) => state.user.value)
-  const getSavedPosts = useSelector((state) => state.post.value)
-
+const Posts = ({ posts }) => {
   // to get formatted date
   const timeElapsed = (createdAt) => {
     const timestamp = new Date(createdAt)
     return timestamp.toDateString()
   }
-
-  // Save Post
-  const savePost = async (postId) => {
-    try {
-      await Axios.put("/save_post", {
-        postId,
-        userId: user._id,
-      })
-      fetchSavedPosts()
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const isPostSaved = (id) => getSavedPosts.includes(id)
 
   return posts.map((post) => (
     <div
@@ -47,7 +21,7 @@ const Posts = ({ posts, fetchSavedPosts }) => {
       className="flex flex-col border-t-[1px] px-4 py-3 hover:bg-gray-100 transition duration-200 cursor-pointer"
     >
       <Link to={`/post/${post._id}`} onClick={() => dispatch(postId(post._id))}>
-        <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center justify-between gap-2">
           <Link to="/profile" onClick={() => dispatch(profileId(post.userId))}>
             <img
               src={
@@ -56,7 +30,7 @@ const Posts = ({ posts, fetchSavedPosts }) => {
                   : post.profileImage
               }
               alt="post-img"
-              className="h-10 w-10 rounded-full object-cover cursor-pointer hover:opacity-90"
+              className="h-10 w-10 rounded-full object-cover cursor-pointer"
             />
           </Link>
           <button
@@ -69,15 +43,8 @@ const Posts = ({ posts, fetchSavedPosts }) => {
             </Link>
           </button>
 
-          {/* <Link className="flex gap-1 items-center hover:text-cyan-600 hover:bg-cyan-200 rounded-full p-2 transition duration-400 ease-in">
-            <RiBookmarkFill className="text-lg" />
-          </Link> */}
-
-          <Link
-            className="flex gap-1 items-center hover:text-cyan-600 hover:bg-cyan-200 rounded-full p-2 transition duration-400 ease-in"
-            onClick={() => savePost(post._id)}
-          >
-            <RiBookmarkLine className="text-lg" />
+          <Link className="flex gap-1 items-center hover:text-blue-600 hover:bg-blue-200 rounded-full p-2 transition duration-400 ease-in">
+            <RiShareLine className="text-lg" />
           </Link>
         </div>
 
@@ -97,12 +64,12 @@ const Posts = ({ posts, fetchSavedPosts }) => {
             </div>
 
             <div className="flex gap-6">
-              <Link className="flex gap-1 items-center hover:text-green-600 hover:bg-green-200 rounded-full p-2 transition duration-400 ease-in">
+              <button className="flex gap-1 items-center hover:text-green-600 hover:bg-green-200 rounded-full p-2 transition duration-400 ease-in">
                 <RiMessage2Line className="text-lg" />
-              </Link>
+              </button>
 
-              <Link className="flex gap-1 items-center hover:text-blue-600 hover:bg-blue-200 rounded-full p-2 transition duration-400 ease-in">
-                <RiShareLine className="text-lg" />
+              <Link className="flex gap-1 items-center hover:text-cyan-600 hover:bg-cyan-200 rounded-full p-2 transition duration-400 ease-in">
+                <RiFlagLine className="text-lg" />
               </Link>
             </div>
           </div>
