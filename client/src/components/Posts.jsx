@@ -5,10 +5,13 @@ import {
   RiMessage2Line,
   RiFlagLine,
 } from "react-icons/ri"
+import { useDispatch } from "react-redux"
 import { profileId } from "../features/profileId"
 import { postId } from "../features/post"
 
 const Posts = ({ posts }) => {
+  const dispatch = useDispatch()
+
   // to get formatted date
   const timeElapsed = (createdAt) => {
     const timestamp = new Date(createdAt)
