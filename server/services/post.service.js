@@ -108,6 +108,29 @@ const updateSavedPost = async (postId, userId) => {
   }
 }
 
+const removeSavedPost = async (postId, userId) => {
+  try {
+    const post = await Post.findById(postId)
+    const user = await User.findById(userId)
+
+    function removeValue(currentpost, index, arr) {
+      // If the value at the current array index matches the specified value (2)
+      if (currentpost === post._id) {
+        // Removes the value from the original array
+        arr.splice(index, 1)
+        return true
+      }
+      return false
+    }
+
+    user.savedPosts.filter(removeValue)
+    await user.save()
+    return user.savedPosts
+  } catch (error) {
+    throw { error: "Unable to save post", code: STATUS.UNPROCESSABLE_ENTITY }
+  }
+}
+
 const updatePost = async (id, data) => {
   try {
     const response = await Post.findByIdAndUpdate(id, data)
@@ -144,6 +167,7 @@ module.exports = {
   getSavedPosts,
   updateLikes,
   updateSavedPost,
+  removeSavedPost,
   updatePost,
   deletePost,
 }

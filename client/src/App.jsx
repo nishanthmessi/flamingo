@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar"
 import Feed from "./components/Feed"
 import Profiles from "./components/Profiles"
 import Post from "./pages/Post"
+import SavedPosts from "./pages/SavedPosts"
 
 const App = () => {
   Axios.defaults.baseURL = "http://localhost:5001/api"
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/userProfile" element={<UserProfile />} />
         <Route path="/post/:id" element={<Post />} />
         <Route path="/profile" element={<Profiles />} />
+        <Route path="/saved-posts" element={<SavedPosts />} />
       </Routes>
     </div>
   )

@@ -33,30 +33,19 @@ const Post = () => {
     setPostData(res.data)
   }
 
-  //
-  const fetchSavedPosts = async () => {
+  const getSavedPosts = async () => {
+    const res = await Axios.get(`post/${currentPostId}`)
+    setPostData(res.data)
+  }
+
+  // Get saved posts ids
+  const fetchSavedPostsId = async () => {
     try {
       const response = await Axios.get(`/saved_posts/ids/${user._id}`)
       setSavedPosts(response.data.savedPosts)
     } catch (error) {
       console.log(error)
     }
-  }
-
-  useEffect(() => {
-    getPost()
-    fetchSavedPosts()
-  }, [])
-
-  const timeElapsed = (createdAt) => {
-    const timestamp = new Date(createdAt)
-    return timestamp.toDateString()
-  }
-
-  // Delete Post
-  const handleDeletePost = async () => {
-    await Axios.delete(`post/${currentPostId}`)
-    navigate("/home")
   }
 
   // Save Post
@@ -66,10 +55,26 @@ const Post = () => {
         postId,
         userId: user._id,
       })
-      fetchSavedPosts()
+      fetchSavedPostsId()
     } catch (error) {
       console.log(error)
     }
+  }
+
+  // Delete Post
+  const handleDeletePost = async () => {
+    await Axios.delete(`post/${currentPostId}`)
+    navigate("/home")
+  }
+
+  useEffect(() => {
+    getPost()
+    fetchSavedPostsId()
+  }, [])
+
+  const timeElapsed = (createdAt) => {
+    const timestamp = new Date(createdAt)
+    return timestamp.toDateString()
   }
 
   const isPostSaved = (id) => savedPosts.includes(id)

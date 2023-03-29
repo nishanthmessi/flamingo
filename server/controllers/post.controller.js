@@ -57,7 +57,7 @@ const getSavedPostsId = async (req, res) => {
 
 const getSavedPosts = async (req, res) => {
   try {
-    const response = await PostServices.getSavedPosts(req.body.userId)
+    const response = await PostServices.getSavedPosts(req.params.userId)
     return res.status(STATUS.OK).json(response)
   } catch (error) {
     return res.status(STATUS.INTERNAL_SERVER_ERROR).json(error)
@@ -94,6 +94,19 @@ const updateSavedPost = async (req, res) => {
   }
 }
 
+const deleteSavedPost = async (req, res) => {
+  try {
+    const response = await PostServices.removeSavedPost(
+      req.body.postId,
+      req.body.userId
+    )
+    return res.status(STATUS.OK).json(response)
+  } catch (error) {
+    console.log(error)
+    return res.status(STATUS.INTERNAL_SERVER_ERROR).json(error)
+  }
+}
+
 const deletePost = async (req, res) => {
   try {
     const response = await PostServices.deletePost(req.params.id)
@@ -114,5 +127,6 @@ module.exports = {
   updatePost,
   updateLikes,
   updateSavedPost,
+  deleteSavedPost,
   deletePost,
 }

@@ -43,7 +43,7 @@ const NavBar = () => {
           </div>
         </Link>
 
-        <Link to="/" className="flex items-center">
+        <Link to="/saved-posts" className="flex items-center">
           <div className="flex items-center gap-4 hover:bg-gray-200 rounded-3xl px-2 py-2 transition duration-200 ease-in mb-2">
             <RiBookmarkLine className="text-2xl" />
             <h1 className="font-medium text-lg hidden 2xl:flex">Saved</h1>
