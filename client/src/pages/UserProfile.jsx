@@ -71,7 +71,7 @@ const UserProfile = () => {
           <>
             <div className="">
               <img
-                src={userProfile.profileImage}
+                src={userProfile.coverImage}
                 alt="post-img"
                 className="w-full object-cover"
               />
@@ -97,7 +97,11 @@ const UserProfile = () => {
                   <h1>@{userProfile.username}</h1>
                 </div>
                 <div className="text-sm">
-                  <p className="mb-2">{userProfile.bio}</p>
+                  {!userProfile.bio ? (
+                    ""
+                  ) : (
+                    <p className="mb-2">{userProfile.bio}</p>
+                  )}
                   <p className="flex items-center gap-1 text-gray-600 font-medium">
                     <RiCalendarCheckLine className="text-[1.1rem]" />
                     <p>Since {getJoinedYear(userProfile.createdAt)} </p>
