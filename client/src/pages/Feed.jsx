@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react"
 import { RiGalleryLine } from "react-icons/ri"
-import Posts from "./Posts"
+import Posts from "../components/Posts"
 import { storage } from "../firebase"
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import { v4 } from "uuid"
 import Axios from "axios"
 import { useSelector } from "react-redux"
-import Explore from "./Explore"
+import Explore from "../components/Explore"
 
 const Feed = () => {
   const [posts, setPosts] = useState([])

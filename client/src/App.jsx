@@ -4,11 +4,10 @@ import Login from "./components/Login"
 import Register from "./components/Register"
 import UserProfile from "./pages/UserProfile"
 import NavBar from "./components/NavBar"
-import Feed from "./components/Feed"
+import Feed from "./pages/Feed"
 import Profiles from "./components/Profiles"
 import Post from "./pages/Post"
 import SavedPosts from "./pages/SavedPosts"
-import Settings from "./pages/Settings"
 
 const App = () => {
   Axios.defaults.baseURL = "http://localhost:5001/api"
@@ -24,7 +23,6 @@ const App = () => {
         <Route path="/post/:id" element={<Post />} />
         <Route path="/profile" element={<Profiles />} />
         <Route path="/saved-posts" element={<SavedPosts />} />
-        {/* <Route path="/user/settings" element={<Settings />} /> */}
       </Routes>
     </div>
   )
