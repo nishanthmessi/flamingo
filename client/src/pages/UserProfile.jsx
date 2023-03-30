@@ -4,13 +4,19 @@ import Posts from "../components/Posts"
 import { useGetUserID } from "../hooks/useGetUserId"
 import UsersList from "../components/UsersList"
 
-import { RiSearchLine, RiArrowLeftLine } from "react-icons/ri"
+import {
+  RiSearchLine,
+  RiArrowLeftLine,
+  RiCalendarCheckLine,
+} from "react-icons/ri"
 import { Link } from "react-router-dom"
 import Spinner from "../components/Spinner"
+import Settings from "./Settings"
 
 const UserProfile = () => {
   const [userProfile, setUserProfile] = useState("")
   const [userPosts, setUserPosts] = useState([])
+  const [openSettings, setOpenSettings] = useState(false)
 
   const userId = useGetUserID()
 
@@ -35,6 +41,13 @@ const UserProfile = () => {
     getUser()
     getUserPosts()
   }, [])
+
+  const getJoinedYear = (createdDay) => {
+    const createdTimestamp = new Date(createdDay)
+    const utcFullDate = createdTimestamp.toUTCString().toString()
+    const formatted = utcFullDate.substring(8, utcFullDate.length - 13)
+    return formatted
+  }
 
   return (
     <>
@@ -63,15 +76,33 @@ const UserProfile = () => {
                 className="w-full object-cover"
               />
             </div>
-            <div className="flex flex-col gap-2 -mt-16 px-4">
-              <img
-                src={userProfile.profileImage}
-                alt="post-img"
-                className="h-32 w-32 rounded-full object-cover outline outline-gray-50"
-              />
-              <div>
-                <h1 className="font-bold">{userProfile.name}</h1>
-                <h1>@{userProfile.username}</h1>
+            <div className="flex flex-col gap-2 -mt-16 px-4 mb-3">
+              <div className="flex justify-between items-end">
+                <img
+                  src={userProfile.profileImage}
+                  alt="post-img"
+                  className="h-32 w-32 rounded-full object-cover outline outline-gray-50"
+                />
+                <button
+                  className="bg-blue-400 rounded-3xl text-white px-2 py-2 text-xs"
+                  onClick={() => setOpenSettings(!openSettings)}
+                >
+                  Edit Profile
+                </button>
+              </div>
+
+              <div className="flex flex-col gap-3">
+                <div>
+                  <h1 className="font-bold">{userProfile.name}</h1>
+                  <h1>@{userProfile.username}</h1>
+                </div>
+                <div className="text-sm">
+                  <p className="mb-2">There is a bounty if you wanna know!</p>
+                  <p className="flex items-center gap-1 text-gray-600 font-medium">
+                    <RiCalendarCheckLine className="text-[1.1rem]" />
+                    <p>Since {getJoinedYear(userProfile.createdAt)} </p>
+                  </p>
+                </div>
               </div>
             </div>
             {!userPosts ? <div>loading</div> : <Posts posts={userPosts} />}
@@ -91,6 +122,12 @@ const UserProfile = () => {
           <UsersList />
         </div>
       </div>
+
+      {openSettings ? (
+        <Settings user={userProfile} setOpenSettings={setOpenSettings} />
+      ) : (
+        ""
+      )}
     </>
   )
 }

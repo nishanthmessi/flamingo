@@ -7,8 +7,12 @@ import {
   RiBookmarkLine,
 } from "react-icons/ri"
 import Logo from "../assets/main-logo.png"
+import { useSelector } from "react-redux"
 
 const NavBar = () => {
+  const user = useSelector((state) => state.user.value)
+  console.log(user)
+
   return (
     <div className="flex flex-col justify-start items-end xl:mr-10 2xl:w-[16vw]">
       <div className="fixed top-2">
@@ -50,7 +54,7 @@ const NavBar = () => {
           </div>
         </Link>
 
-        <Link to="/userprofile" className="flex items-center">
+        <Link to={`/${user.username}`} className="flex items-center">
           <div className="flex items-center gap-4 hover:bg-gray-200 rounded-3xl px-2 py-2 transition duration-200 ease-in mb-2">
             <RiUserLine className="text-2xl" />
             <h1 className="font-medium text-lg hidden 2xl:flex">Profile</h1>
