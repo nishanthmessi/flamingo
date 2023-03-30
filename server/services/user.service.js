@@ -74,10 +74,20 @@ const getUserByEmail = async (email) => {
   }
 }
 
+const updateUser = async (userId, data) => {
+  try {
+    const user = await User.findByIdAndUpdate(userId, data)
+    return user
+  } catch (error) {
+    throw { err: "Unable to update user", code: STATUS.NOT_FOUND }
+  }
+}
+
 module.exports = {
   createUser,
   getUsers,
   getUserById,
   getUserByEmail,
   getRandomUsers,
+  updateUser,
 }

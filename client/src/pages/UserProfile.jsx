@@ -97,7 +97,7 @@ const UserProfile = () => {
                   <h1>@{userProfile.username}</h1>
                 </div>
                 <div className="text-sm">
-                  <p className="mb-2">There is a bounty if you wanna know!</p>
+                  <p className="mb-2">{userProfile.bio}</p>
                   <p className="flex items-center gap-1 text-gray-600 font-medium">
                     <RiCalendarCheckLine className="text-[1.1rem]" />
                     <p>Since {getJoinedYear(userProfile.createdAt)} </p>

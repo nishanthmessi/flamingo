@@ -15,7 +15,7 @@ const routes = (app) => {
   )
 
   app.get("/api/user/:id", UserController.getUserById)
-
+  app.patch("/api/user/:id", UserController.updateUser)
   app.get("/api/users", UserController.getAllUsers)
   app.get("/api/users/random", UserController.getRandomUsers)
 }

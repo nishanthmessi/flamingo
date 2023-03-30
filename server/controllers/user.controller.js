@@ -39,7 +39,7 @@ const getUserById = async (req, res) => {
     const response = await UserService.getUserById(req.params.id)
     return res.status(STATUS.OK).json(response)
   } catch (error) {
-    console.log(error)
+    return res.status(STATUS.INTERNAL_SERVER_ERROR).json(error)
   }
 }
 
@@ -48,7 +48,7 @@ const getAllUsers = async (req, res) => {
     const response = await UserService.getUsers(req.query)
     return res.status(STATUS.OK).json(response)
   } catch (error) {
-    console.log(error)
+    return res.status(STATUS.INTERNAL_SERVER_ERROR).json(error)
   }
 }
 
@@ -57,8 +57,24 @@ const getRandomUsers = async (req, res) => {
     const response = await UserService.getRandomUsers(req.query)
     return res.status(STATUS.OK).json(response)
   } catch (error) {
-    console.log(error)
+    return res.status(STATUS.INTERNAL_SERVER_ERROR).json(error)
   }
 }
 
-module.exports = { signUp, signIn, getUserById, getAllUsers, getRandomUsers }
+const updateUser = async (req, res) => {
+  try {
+    const response = await UserService.updateUser(req.params.id, req.body)
+    return res.status(STATUS.OK).json(response)
+  } catch (error) {
+    return res.status(STATUS.INTERNAL_SERVER_ERROR).json(error)
+  }
+}
+
+module.exports = {
+  signUp,
+  signIn,
+  getUserById,
+  getAllUsers,
+  getRandomUsers,
+  updateUser,
+}

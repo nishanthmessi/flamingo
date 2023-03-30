@@ -34,11 +34,13 @@ const Feed = () => {
     })
   }
 
-  if (mediaUpload == "") {
-    console.log("No media upload")
-  } else {
-    uploadMedia()
-  }
+  console.log(mediaUpload)
+
+  // if (mediaUpload == "") {
+  //   console.log("No media upload")
+  // } else {
+  //   uploadMedia()
+  // }
 
   // New post upload
   const uploadPost = async () => {
