@@ -11,7 +11,7 @@ import Explore from "../components/Explore"
 const Feed = () => {
   const [posts, setPosts] = useState([])
   const [description, setDescription] = useState("")
-  const [mediaUpload, setMediaUpload] = useState("")
+  const [mediaUpload, setMediaUpload] = useState(null)
   const [imageUrl, setImageUrl] = useState("")
 
   const user = useSelector((state) => state.user.value)
@@ -46,6 +46,7 @@ const Feed = () => {
       description: description,
       mediaUrl: imageUrl,
     }
+
     await Axios.post("/post/create", postData)
       .then(() => {
         getPosts()
@@ -80,9 +81,7 @@ const Feed = () => {
             <input
               type="file"
               className="text-xs w-28"
-              onChange={(e) => {
-                setMediaUpload(e.target.files[0])
-              }}
+              onChange={(e) => setMediaUpload(e.target.files[0])}
             />
           </label>
           <button

@@ -28,7 +28,7 @@ const Posts = ({ posts }) => {
         posts.map((post) => (
           <div
             key={post._id}
-            className="flex flex-col border-t-[1px] px-4 py-3 hover:bg-gray-100 transition duration-200 cursor-pointer"
+            className="flex flex-col border-t-[1px] px-4 py-3 hover:bg-gray-50 transition duration-200 cursor-pointer"
           >
             <Link
               to={`/post/${post._id}`}
