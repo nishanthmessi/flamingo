@@ -11,7 +11,6 @@ import { useSelector } from "react-redux"
 
 const NavBar = () => {
   const user = useSelector((state) => state.user.value)
-  console.log(user)
 
   return (
     <div className="flex flex-col justify-start items-end xl:mr-10 2xl:w-[16vw]">

@@ -28,19 +28,14 @@ const Feed = () => {
   const uploadMedia = () => {
     if (mediaUpload == null) return
 
-    const imageRef = ref(storage, `images/${mediaUpload.name + v4()}`)
+    const imageRef = ref(storage, `post-images/${mediaUpload.name + v4()}`)
     uploadBytes(imageRef, mediaUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => setImageUrl(url))
     })
   }
 
   console.log(mediaUpload)
-
-  // if (mediaUpload == "") {
-  //   console.log("No media upload")
-  // } else {
-  //   uploadMedia()
-  // }
+  console.log(imageUrl)
 
   // New post upload
   const uploadPost = async () => {

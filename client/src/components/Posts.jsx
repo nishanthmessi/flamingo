@@ -12,8 +12,6 @@ import { postId } from "../features/post"
 const Posts = ({ posts }) => {
   const dispatch = useDispatch()
 
-  console.log(posts)
-
   // to get formatted date
   const timeElapsed = (createdAt) => {
     const timestamp = new Date(createdAt)
