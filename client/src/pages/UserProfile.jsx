@@ -20,16 +20,16 @@ const UserProfile = () => {
 
   const userId = useGetUserID()
 
-  useEffect(() => {
-    const getUser = async () => {
-      try {
-        const response = await Axios.get(`/user/${userId}`)
-        setUserProfile(response.data)
-      } catch (error) {
-        console.log(error)
-      }
+  const getUser = async () => {
+    try {
+      const response = await Axios.get(`/user/${userId}`)
+      setUserProfile(response.data)
+    } catch (error) {
+      console.log(error)
     }
+  }
 
+  useEffect(() => {
     const getUserPosts = async () => {
       try {
         const response = await Axios.get(`/posts/${userId}`)
@@ -76,7 +76,7 @@ const UserProfile = () => {
                 className="w-full object-cover"
               />
             </div>
-            <div className="flex flex-col gap-2 -mt-16 px-4 mb-3">
+            <div className="flex flex-col gap-2 -mt-16 px-4 pb-3 border-b-[1px]">
               <div className="flex justify-between items-end">
                 <img
                   src={userProfile.profileImage}
@@ -128,7 +128,11 @@ const UserProfile = () => {
       </div>
 
       {openSettings ? (
-        <Settings user={userProfile} setOpenSettings={setOpenSettings} />
+        <Settings
+          user={userProfile}
+          setOpenSettings={setOpenSettings}
+          getUser={getUser}
+        />
       ) : (
         ""
       )}

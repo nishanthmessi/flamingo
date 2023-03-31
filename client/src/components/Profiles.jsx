@@ -3,7 +3,7 @@ import Axios from "axios"
 import { useSelector } from "react-redux"
 import Posts from "../components/Posts"
 import UsersList from "./UsersList"
-import { RiSearchLine, RiArrowLeftLine } from "react-icons/ri"
+import { RiCalendarCheckLine, RiArrowLeftLine } from "react-icons/ri"
 import { Link } from "react-router-dom"
 
 const UserProfile = () => {
@@ -34,6 +34,13 @@ const UserProfile = () => {
     getUserPosts()
   }, [])
 
+  const getJoinedYear = (createdDay) => {
+    const createdTimestamp = new Date(createdDay)
+    const utcFullDate = createdTimestamp.toUTCString().toString()
+    const formatted = utcFullDate.substring(8, utcFullDate.length - 13)
+    return formatted
+  }
+
   return (
     <>
       <div className="w-[40vw] 2xl:w-[28vw] border-x-[1px]">
@@ -57,7 +64,7 @@ const UserProfile = () => {
                 className="w-full object-cover"
               />
             </div>
-            <div className="flex flex-col gap-2 -mt-16 px-4">
+            <div className="flex flex-col gap-2 -mt-16 px-4 pb-3 border-b-[1px]">
               <img
                 src={userProfile.profileImage}
                 alt="post-img"
@@ -66,6 +73,17 @@ const UserProfile = () => {
               <div>
                 <h1 className="font-bold">{userProfile.name}</h1>
                 <h1>@{userProfile.username}</h1>
+              </div>
+              <div className="text-sm">
+                {!userProfile.bio ? (
+                  ""
+                ) : (
+                  <p className="mb-2">{userProfile.bio}</p>
+                )}
+                <p className="flex items-center gap-1 text-gray-600 font-medium">
+                  <RiCalendarCheckLine className="text-[1.1rem]" />
+                  <p>Since {getJoinedYear(userProfile.createdAt)} </p>
+                </p>
               </div>
             </div>
             {!userPosts ? <div>loading</div> : <Posts posts={userPosts} />}
