@@ -9,6 +9,8 @@ import Profiles from "./components/Profiles"
 import Post from "./pages/Post"
 import SavedPosts from "./pages/SavedPosts"
 
+import ProtectedRoute from "./utils/ProtectedRoute"
+
 const App = () => {
   Axios.defaults.baseURL = "http://localhost:5001/api"
 
@@ -16,13 +18,16 @@ const App = () => {
     <div className="flex justify-center gap-8 w-[98vw]">
       <NavBar />
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Register />} />
-        <Route path="/home" element={<Feed />} />
+
+        {/* <Route element={<ProtectedRoute />}> */}
+        <Route path="/home" element={<Feed />} exact />
         <Route path="/:username" element={<UserProfile />} />
         <Route path="/post/:id" element={<Post />} />
         <Route path="/profile" element={<Profiles />} />
         <Route path="/saved-posts" element={<SavedPosts />} />
+        {/* </Route> */}
       </Routes>
     </div>
   )

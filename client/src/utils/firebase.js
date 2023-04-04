@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp } from "firebase/app"
 import { getStorage } from "firebase/storage"
 
 const firebaseConfig = {
@@ -7,9 +7,9 @@ const firebaseConfig = {
   projectId: "flamingo-react-app",
   storageBucket: "flamingo-react-app.appspot.com",
   messagingSenderId: "607407114742",
-  appId: "1:607407114742:web:497349ff801290f33edfd7"
-};
+  appId: "1:607407114742:web:497349ff801290f33edfd7",
+}
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig)
 export const storage = getStorage(app)

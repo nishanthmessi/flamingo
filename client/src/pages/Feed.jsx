@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { RiGalleryLine } from "react-icons/ri"
 import Posts from "../components/Posts"
-import { storage } from "../firebase"
+import { storage } from "../utils/firebase"
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import { v4 } from "uuid"
 import Axios from "axios"
@@ -34,7 +34,6 @@ const Feed = () => {
     })
   }
 
-  console.log(mediaUpload)
   console.log(imageUrl)
 
   // New post upload
@@ -83,9 +82,18 @@ const Feed = () => {
               className="text-xs w-28"
               onChange={(e) => setMediaUpload(e.target.files[0])}
             />
+            <button
+              className="bg-pink-400 rounded-3xl text-xs text-white px-3 py-1 hover:scale-110 transition duration-400"
+              // onClick={uploadMedia}
+            >
+              upload
+            </button>
           </label>
+
           <button
-            className="bg-pink-400 rounded-3xl text-xs text-white px-3 py-1 hover:scale-110 transition duration-400"
+            className={
+              "bg-pink-400 rounded-3xl text-xs text-white px-3 py-1 hover:bg-pink-500"
+            }
             onClick={uploadPost}
           >
             chirp

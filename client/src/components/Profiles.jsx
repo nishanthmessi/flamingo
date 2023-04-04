@@ -59,7 +59,7 @@ const UserProfile = () => {
           <>
             <div className="">
               <img
-                src={userProfile.profileImage}
+                src={userProfile.coverImage}
                 alt="post-img"
                 className="w-full object-cover"
               />

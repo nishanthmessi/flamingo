@@ -5,6 +5,7 @@ import thunk from "redux-thunk"
 import postReducer from "../features/post"
 import userReducer from "../features/user"
 import profileReducer from "../features/profileId"
+import authReducer from "../features/auth"
 
 const persistConfig = {
   key: "root",
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   post: postReducer,
   user: userReducer,
   profile: profileReducer,
+  auth: authReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
