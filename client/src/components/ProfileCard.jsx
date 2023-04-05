@@ -4,6 +4,7 @@ import { useGetUserID } from "../hooks/useGetUserId"
 import { useDispatch } from "react-redux"
 import { userDetails } from "../features/user"
 import { useNavigate, Link } from "react-router-dom"
+import { authenticated } from "../features/auth"
 
 const Profile = () => {
   const [user, setUser] = useState("")
@@ -29,7 +30,8 @@ const Profile = () => {
   const logout = () => {
     window.localStorage.removeItem("userId")
     window.localStorage.removeItem("access_token")
-    navigate("/")
+    dispatch(authenticated(false))
+    navigate("/login")
   }
 
   return (

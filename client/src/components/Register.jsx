@@ -74,7 +74,7 @@ const Register = () => {
 
           <div className="flex text-[.8rem] gap-1">
             <p>Already have account?</p>
-            <Link to="/" className="text-blue-500 hover:underline">
+            <Link to="/login" className="text-blue-500 hover:underline">
               Sign In
             </Link>
           </div>

@@ -2,6 +2,8 @@ import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import Axios from "axios"
 import { useCookies } from "react-cookie"
+import { useDispatch, useSelector } from "react-redux"
+import { authenticated } from "../features/auth"
 
 const Login = () => {
   const [email, setEmail] = useState("")
@@ -9,7 +11,11 @@ const Login = () => {
 
   const [_, setCookies] = useCookies()
 
+  const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  const isAuth = useSelector((state) => state.auth.value)
+  console.log(isAuth)
 
   const handleLogin = async (e) => {
     e.preventDefault()
@@ -23,6 +29,7 @@ const Login = () => {
       setCookies("access_token", request.data.token)
       window.localStorage.setItem("userId", request.data.id)
       window.localStorage.setItem("access_token", request.data.token)
+      dispatch(authenticated(true))
       navigate("/home")
     } catch (error) {
       console.log(error)
