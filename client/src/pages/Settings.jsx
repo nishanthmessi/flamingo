@@ -24,7 +24,7 @@ const Settings = ({ user, setOpenSettings, getUser }) => {
         <div className="relative bg-white rounded-lg shadow">
           <button
             type="button"
-            className="absolute top-3 right-2.5 text-gray-400 bg-transparent"
+            className="absolute top-3 right-2.5 text-gray-400 bg-gray-700 p-1 rounded-full"
             data-modal-hide="popup-modal"
             onClick={() => setOpenSettings(false)}
           >
@@ -32,12 +32,17 @@ const Settings = ({ user, setOpenSettings, getUser }) => {
             <span className="sr-only">Close modal</span>
           </button>
 
-          <div className="flex justify-end items-end">
-            <img
-              src={user.coverImage}
-              alt="post-img"
-              className="w-full object-cover rounded-t-lg"
-            />
+          <div className="flex justify-end items-end bg-gray-400">
+            {user.coverImage ? (
+              <img
+                src={user.coverImage}
+                alt="post-img"
+                className="w-full object-cover rounded-t-lg"
+              />
+            ) : (
+              <div className=" h-[30vh]"></div>
+            )}
+
             <div className="absolute">
               <label className="flex items-center gap-2 text-white p-1 rounded-xl cursor-pointer m-2 backdrop-blur-md backdrop-saturate-125 bg-white/40">
                 <RiImageEditLine className="text-xl" />

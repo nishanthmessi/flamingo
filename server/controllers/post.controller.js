@@ -6,6 +6,7 @@ const createPost = async (req, res) => {
     const response = await PostServices.createPost(req.body)
     return res.status(STATUS.CREATED).json(response)
   } catch (error) {
+    console.log(error)
     return res.status(STATUS.INTERNAL_SERVER_ERROR).json(error)
   }
 }

@@ -13,6 +13,7 @@ const Feed = () => {
   const [description, setDescription] = useState("")
   const [mediaUpload, setMediaUpload] = useState(null)
   const [imageUrl, setImageUrl] = useState("")
+  const [btnDisable, setBtnDisable] = useState(true)
 
   const user = useSelector((state) => state.user.value)
 
@@ -31,10 +32,10 @@ const Feed = () => {
     const imageRef = ref(storage, `post-images/${mediaUpload.name + v4()}`)
     uploadBytes(imageRef, mediaUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => setImageUrl(url))
+      setMediaUpload(null)
+      setBtnDisable(false)
     })
   }
-
-  console.log(imageUrl)
 
   // New post upload
   const uploadPost = async () => {
@@ -45,13 +46,12 @@ const Feed = () => {
       description: description,
       mediaUrl: imageUrl,
     }
-
     await Axios.post("/post/create", postData)
       .then(() => {
-        getPosts()
         setDescription("")
         setImageUrl("")
         setMediaUpload(null)
+        getPosts()
       })
       .catch((error) => {
         console.log(error)
@@ -71,7 +71,14 @@ const Feed = () => {
             placeholder="What's up"
             rows="4"
             value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={(e) => {
+              setDescription(e.target.value)
+              if (e.target.value === "") {
+                setBtnDisable(true)
+              } else {
+                setBtnDisable(false)
+              }
+            }}
           />
         </div>
         <div className="flex justify-between items-center gap-2 my-4 px-4">
@@ -80,11 +87,13 @@ const Feed = () => {
             <input
               type="file"
               className="text-xs w-28"
-              onChange={(e) => setMediaUpload(e.target.files[0])}
+              onChange={(e) => {
+                setMediaUpload(e.target.files[0])
+              }}
             />
             <button
-              className="bg-pink-400 rounded-3xl text-xs text-white px-3 py-1 hover:scale-110 transition duration-400"
-              // onClick={uploadMedia}
+              className="bg-pink-400 rounded-3xl text-[.6rem] text-white px-2 py-1"
+              onClick={uploadMedia}
             >
               upload
             </button>
@@ -92,7 +101,9 @@ const Feed = () => {
 
           <button
             className={
-              "bg-pink-400 rounded-3xl text-xs text-white px-3 py-1 hover:bg-pink-500"
+              btnDisable
+                ? "bg-gray-400 rounded-3xl text-xs text-white px-3 py-1"
+                : "bg-pink-400 rounded-3xl text-xs text-white px-3 py-1 hover:bg-pink-500"
             }
             onClick={uploadPost}
           >

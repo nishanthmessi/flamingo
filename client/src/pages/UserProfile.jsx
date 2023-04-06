@@ -70,11 +70,15 @@ const UserProfile = () => {
         ) : (
           <>
             <div className="">
-              <img
-                src={userProfile.coverImage}
-                alt="post-img"
-                className="w-full object-cover"
-              />
+              {userProfile.coverImage ? (
+                <img
+                  src={userProfile.coverImage}
+                  alt="post-img"
+                  className="w-full object-cover"
+                />
+              ) : (
+                <div className="bg-gray-300 h-[30vh]"></div>
+              )}
             </div>
             <div className="flex flex-col gap-2 -mt-16 px-4 pb-3 border-b-[1px]">
               <div className="flex justify-between items-end">

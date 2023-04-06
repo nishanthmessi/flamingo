@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: false,
       default:
-        "https://firebasestorage.googleapis.com/v0/b/flamingo-react-app.appspot.com/o/images%2Fprofile_images%2Fuser.png?alt=media&token=3e56c8d6-aea4-4031-9e75-9b4294d971f0",
+        "https://firebasestorage.googleapis.com/v0/b/flamingo-react-app.appspot.com/o/post-images%2Fuser.png?alt=media&token=0e4d4c80-01ab-4a07-98d4-d6dc46b6545e",
     },
     coverImage: {
       type: String,
