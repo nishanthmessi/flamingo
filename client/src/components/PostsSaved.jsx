@@ -10,7 +10,7 @@ import { profileId } from "../features/profileId"
 import { postId } from "../features/post"
 import Spinner from "./Spinner"
 
-const Posts = ({ posts }) => {
+const PostsSaved = ({ posts }) => {
   const dispatch = useDispatch()
 
   // to get formatted date
@@ -24,7 +24,7 @@ const Posts = ({ posts }) => {
       {posts == "" ? (
         <div className="flex justify-center items-center h-[50vh] z-10">
           <div className="h-[20vh]">
-            <Spinner />
+            <h1>Nothing here, Start saving posts</h1>
           </div>
         </div>
       ) : (
@@ -103,4 +103,4 @@ const Posts = ({ posts }) => {
   )
 }
 
-export default Posts
+export default PostsSaved

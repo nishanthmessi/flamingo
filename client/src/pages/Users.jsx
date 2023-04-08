@@ -1,26 +1,10 @@
-import React, { useEffect, useState } from "react"
-import Axios from "axios"
-import { useGetUserID } from "../hooks/useGetUserId"
 import { RiArrowLeftLine, RiSearchLine } from "react-icons/ri"
 import { Link } from "react-router-dom"
-import UsersList from "../components/UsersList"
 import ProfileCard from "../components/ProfileCard"
-import Spinner from "../components/Spinner"
-import PostsSaved from "../components/PostsSaved"
+import UsersList from "../components/UsersList"
+import AllUsers from "../components/AllUsers"
 
-const SavedPosts = () => {
-  const [savedPosts, setSavedPosts] = useState([])
-
-  const userId = useGetUserID()
-
-  useEffect(() => {
-    const getSavedPosts = async () => {
-      const res = await Axios.get(`saved_posts/${userId}`)
-      setSavedPosts(res.data)
-    }
-    getSavedPosts()
-  }, [])
-
+const Users = () => {
   return (
     <>
       <div className="w-[40vw] xl:w-[30vw] 2xl:w-[28vw] border-x-[1px]">
@@ -31,18 +15,9 @@ const SavedPosts = () => {
           >
             <RiArrowLeftLine className="text-xl" />
           </Link>
-          <h1 className="font-semibold text-xl py-3">Saved</h1>
+          <h1 className="font-semibold text-xl py-3">Suggested Users</h1>
         </div>
-
-        {!savedPosts ? (
-          <div className="flex justify-center items-center h-screen">
-            <div className="h-[60vh]">
-              <Spinner />
-            </div>
-          </div>
-        ) : (
-          <PostsSaved posts={savedPosts} />
-        )}
+        <AllUsers />
       </div>
       <div className="lg:min-w-[16vw] w-[18vw] hidden xl:block mt-2">
         <div className="sticky top-2">
@@ -62,4 +37,4 @@ const SavedPosts = () => {
   )
 }
 
-export default SavedPosts
+export default Users

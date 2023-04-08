@@ -2,9 +2,9 @@ import { Link } from "react-router-dom"
 import {
   RiHome7Line,
   RiHashtag,
-  RiNotification2Line,
   RiUserLine,
   RiBookmarkLine,
+  RiTeamLine,
 } from "react-icons/ri"
 import Logo from "../assets/main-logo.png"
 import { useSelector } from "react-redux"
@@ -37,12 +37,10 @@ const NavBar = () => {
           </div>
         </Link>
 
-        <Link to="/" className="flex items-center">
+        <Link to="/view-users" className="flex items-center">
           <div className="flex items-center gap-4 hover:bg-gray-200 rounded-3xl px-2 py-2 transition duration-200 ease-in mb-2">
-            <RiNotification2Line className="text-2xl" />
-            <h1 className="font-medium text-lg hidden 2xl:flex">
-              Notificatons
-            </h1>
+            <RiTeamLine className="text-2xl" />
+            <h1 className="font-medium text-lg hidden 2xl:flex">View Users</h1>
           </div>
         </Link>
 
