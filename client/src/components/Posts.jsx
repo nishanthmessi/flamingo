@@ -8,6 +8,7 @@ import {
 import { useDispatch } from "react-redux"
 import { profileId } from "../features/profileId"
 import { postId } from "../features/post"
+import Spinner from "./Spinner"
 
 const Posts = ({ posts }) => {
   const dispatch = useDispatch()
@@ -22,7 +23,11 @@ const Posts = ({ posts }) => {
     <>
       {posts == "" ? (
         <div className="flex justify-center items-center h-[50vh] z-10">
-          <h1>Nothing here, start chriping!!</h1>
+          {/* <h1>Nothing here, start chriping!!</h1> */}
+
+          <div className="h-[20vh]">
+            <Spinner />
+          </div>
         </div>
       ) : (
         posts.map((post) => (

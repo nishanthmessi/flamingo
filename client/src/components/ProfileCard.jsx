@@ -54,9 +54,7 @@ const Profile = () => {
                 {user.name}
               </Link>
               {/* <h2 className='text-xs font-medium'>@{user.username}</h2> */}
-              <p className="text-sm text-cutoff">
-                There is a bounty if you wanna know!
-              </p>
+              <p className="text-sm text-cutoff">{user.bio}</p>
             </div>
           </div>
         </div>

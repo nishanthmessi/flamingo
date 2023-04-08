@@ -102,7 +102,7 @@ const Feed = () => {
           <button
             className={
               btnDisable
-                ? "bg-gray-400 rounded-3xl text-xs text-white px-3 py-1"
+                ? "bg-gray-400 rounded-3xl text-xs text-white px-3 py-1 cursor-default"
                 : "bg-pink-400 rounded-3xl text-xs text-white px-3 py-1 hover:bg-pink-500"
             }
             onClick={uploadPost}
@@ -110,15 +110,7 @@ const Feed = () => {
             chirp
           </button>
         </div>
-        {!posts ? (
-          <div className="flex justify-center items-center h-[75vh]">
-            <div className="h-[70vh]">
-              <Spinner />
-            </div>
-          </div>
-        ) : (
-          <Posts posts={posts} />
-        )}
+        <Posts posts={posts} />
       </div>
       <Explore />
     </>

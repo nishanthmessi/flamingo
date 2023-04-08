@@ -3,7 +3,6 @@ import Axios from "axios"
 import Posts from "../components/Posts"
 import { useGetUserID } from "../hooks/useGetUserId"
 import UsersList from "../components/UsersList"
-
 import {
   RiSearchLine,
   RiArrowLeftLine,
