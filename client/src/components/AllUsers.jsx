@@ -17,8 +17,6 @@ const AllUsers = () => {
     getAllUsers()
   }, [])
 
-  console.log(allUsers)
-
   return (
     <div className="w-full">
       {allUsers.map((user) => (
