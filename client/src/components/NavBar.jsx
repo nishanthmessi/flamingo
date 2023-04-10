@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Link } from "react-router-dom"
 import {
   RiHome7Line,
@@ -8,8 +9,11 @@ import {
 } from "react-icons/ri"
 import Logo from "../assets/main-logo.png"
 import { useSelector } from "react-redux"
+import ComposePost from "./ComposePost"
 
 const NavBar = () => {
+  const [openComposePost, setOpenComposePost] = useState(false)
+
   const user = useSelector((state) => state.user.value)
 
   return (
@@ -58,9 +62,17 @@ const NavBar = () => {
           </div>
         </Link>
 
-        <button className="bg-pink-400 rounded-3xl text-white hidden 2xl:flex 2xl:px-16 py-2 my-5">
+        <button
+          className="bg-pink-400 rounded-3xl text-white hidden 2xl:flex 2xl:px-16 py-2 my-5"
+          onClick={() => setOpenComposePost(!openComposePost)}
+        >
           Chirp!
         </button>
+        {openComposePost ? (
+          <ComposePost setOpenComposePost={setOpenComposePost} />
+        ) : (
+          ""
+        )}
       </div>
     </div>
   )
