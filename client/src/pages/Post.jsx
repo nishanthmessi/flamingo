@@ -106,11 +106,7 @@ const Post = () => {
                   onClick={() => dispatch(profileId(postData.userId))}
                 >
                   <img
-                    src={
-                      !postData.profileImage
-                        ? "https://images.pexels.com/photos/10909386/pexels-photo-10909386.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load"
-                        : postData.profileImage
-                    }
+                    src={postData.profileImage}
                     alt="post-img"
                     className="h-12 w-12 rounded-full object-cover cursor-pointer hover:opacity-90"
                   />

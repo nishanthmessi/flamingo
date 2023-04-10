@@ -71,7 +71,7 @@ const NavBar = () => {
         {openComposePost ? (
           <ComposePost setOpenComposePost={setOpenComposePost} />
         ) : (
-          ""
+          <></>
         )}
       </div>
     </div>

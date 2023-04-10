@@ -24,7 +24,8 @@ const Posts = ({ posts }) => {
       {posts == "" ? (
         <div className="flex justify-center items-center h-[50vh] z-10">
           <div className="h-[20vh]">
-            <Spinner />
+            {/* <Spinner /> */}
+            <h1>Nothing here!</h1>
           </div>
         </div>
       ) : (
@@ -48,7 +49,7 @@ const Posts = ({ posts }) => {
                         ? "https://images.pexels.com/photos/10909386/pexels-photo-10909386.jpeg?auto=compress&cs=tinysrgb&w=400&lazy=load"
                         : post.profileImage
                     }
-                    alt="post-img"
+                    alt="profile-img"
                     className="h-10 w-10 rounded-full object-cover cursor-pointer"
                   />
                 </Link>

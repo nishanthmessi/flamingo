@@ -112,7 +112,13 @@ const UserProfile = () => {
                 </div>
               </div>
             </div>
-            {!userPosts ? <div>loading</div> : <Posts posts={userPosts} />}
+            {!userPosts ? (
+              <div>
+                <h1>No Posts</h1>
+              </div>
+            ) : (
+              <Posts posts={userPosts} />
+            )}
           </>
         )}
       </div>
