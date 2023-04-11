@@ -21,6 +21,7 @@ const Post = () => {
   const [postData, setPostData] = useState({})
   const [viewOptions, setViewOptions] = useState(false)
   const [savedPosts, setSavedPosts] = useState([])
+  const [newComment, setNewComment] = useState({})
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -56,6 +57,17 @@ const Post = () => {
         userId: user._id,
       })
       fetchSavedPostsId()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const commentPost = async () => {
+    try {
+      await Axios.patch(`/comment/${currentPostId}`, {
+        userId: user._id,
+        comment: newComment,
+      })
     } catch (error) {
       console.log(error)
     }
@@ -225,8 +237,12 @@ const Post = () => {
                   className="outline-none resize-none w-full p-1 bg-gray-100 rounded-lg"
                   placeholder="Share your reply..."
                   rows="2"
+                  onChange={(e) => setNewComment(e.target.value)}
                 ></textarea>
-                <button className="bg-pink-400 hover:bg-pink-500 text-gray-50 rounded-2xl px-2 py-1">
+                <button
+                  className="bg-pink-400 hover:bg-pink-500 text-gray-50 rounded-2xl px-2 py-1"
+                  onClick={commentPost}
+                >
                   Reply
                 </button>
               </div>

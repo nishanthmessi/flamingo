@@ -49,7 +49,7 @@ const ComposePost = ({ setOpenComposePost }) => {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 p-4 overflow-x-hidden overflow-y-hidden md:h-full flex justify-center items-center backdrop-blur-xs backdrop-saturate-125 bg-black/30">
-      <div className="relative w-full h-full max-w-md md:h-auto">
+      <div className="relative w-full h-full max-w-lg md:h-auto">
         <div className="relative bg-white rounded-lg">
           <button
             className="absolute top-3 right-2.5 text-gray-400 bg-gray-700 p-1 rounded-full"

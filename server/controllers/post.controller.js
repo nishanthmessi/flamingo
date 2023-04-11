@@ -83,6 +83,19 @@ const updateLikes = async (req, res) => {
   }
 }
 
+const createComment = async (req, res) => {
+  try {
+    const response = await PostServices.createComment(
+      req.params.postId,
+      req.body
+    )
+    return res.status(STATUS.OK).json(response)
+  } catch (error) {
+    console.log(error)
+    return res.status(STATUS.INTERNAL_SERVER_ERROR).json(error)
+  }
+}
+
 const updateSavedPost = async (req, res) => {
   try {
     const response = await PostServices.updateSavedPost(
@@ -127,6 +140,7 @@ module.exports = {
   getSavedPosts,
   updatePost,
   updateLikes,
+  createComment,
   updateSavedPost,
   deleteSavedPost,
   deletePost,

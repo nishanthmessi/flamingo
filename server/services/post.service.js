@@ -95,6 +95,18 @@ const updateLikes = async (postId) => {
   }
 }
 
+const createComment = async (postId, userId, comment) => {
+  try {
+    const post = await Post.findByIdAndUpdate(postId, comment)
+    // const user = await User.findById(userId)
+
+    // post.comments.push(user, comment)
+    return post
+  } catch (error) {
+    throw { error: "Unable to save post", code: STATUS.UNPROCESSABLE_ENTITY }
+  }
+}
+
 const updateSavedPost = async (postId, userId) => {
   try {
     const post = await Post.findById(postId)
@@ -166,6 +178,7 @@ module.exports = {
   getSavedPostsId,
   getSavedPosts,
   updateLikes,
+  createComment,
   updateSavedPost,
   removeSavedPost,
   updatePost,
