@@ -66,6 +66,7 @@ const Post = () => {
         name: user.name,
         profileImage: user.profileImage,
         comment: newComment,
+        createdAt: new Date(),
       })
       setNewComment("")
       setBtnDisable(true)
