@@ -110,7 +110,7 @@ const Feed = () => {
             chirp
           </button>
         </div>
-        <Posts posts={posts} />
+        <Posts posts={posts} getPosts={getPosts} />
       </div>
       <Explore />
     </>

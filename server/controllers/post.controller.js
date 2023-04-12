@@ -76,7 +76,7 @@ const updatePost = async (req, res) => {
 
 const updateLikes = async (req, res) => {
   try {
-    const response = await PostServices.updateLikes(req.params.postId)
+    const response = await PostServices.updateLikes(req.params.postId, req.body)
     return res.status(STATUS.OK).json(response)
   } catch (error) {
     console.log(error)

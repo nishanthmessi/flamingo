@@ -12,7 +12,7 @@ const routes = (app) => {
   app.get("/api/posts/:userId", postController.getPostByUserId)
   app.get("/api/saved_posts/ids/:userId", postController.getSavedPostsId)
   app.get("/api/saved_posts/:userId", postController.getSavedPosts)
-  app.patch("/api/postlikes/:postId", postController.updateLikes)
+  app.patch("/api/likes/:postId", postController.updateLikes)
   app.patch("/api/comment/:postId", postController.createComment)
   app.put("/api/save_post", postController.updateSavedPost)
   app.put("/api/remove_post", postController.deleteSavedPost)

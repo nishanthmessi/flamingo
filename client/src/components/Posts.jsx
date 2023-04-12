@@ -1,17 +1,32 @@
 import { Link } from "react-router-dom"
+import Axios from "axios"
 import {
   RiHeart3Line,
   RiShareLine,
   RiMessage2Line,
   RiFlagLine,
 } from "react-icons/ri"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { profileId } from "../features/profileId"
 import { postId } from "../features/post"
 import Spinner from "./Spinner"
 
-const Posts = ({ posts }) => {
+const Posts = ({ posts, getPosts }) => {
   const dispatch = useDispatch()
+  const user = useSelector((state) => state.user.value)
+
+  const handleLike = async (postId, postLikes) => {
+    try {
+      Axios.patch(`/likes/${postId}`, {
+        likes: postLikes + 1,
+        likedUsers: user._id,
+        userId: user._id,
+      })
+      getPosts()
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   // to get formatted date
   const timeElapsed = (createdAt) => {
@@ -79,7 +94,10 @@ const Posts = ({ posts }) => {
 
                 <div className="flex items-center justify-between mt-3">
                   <div>
-                    <Link className="flex gap-1 items-center hover:text-red-600 hover:bg-red-200 rounded-2xl p-2 transition duration-400 ease-in">
+                    <Link
+                      className="flex gap-1 items-center hover:text-red-600 hover:bg-red-200 rounded-2xl p-2 transition duration-400 ease-in"
+                      onClick={() => handleLike(post._id, post.likes)}
+                    >
                       <RiHeart3Line className="text-lg" />
                       <p className="text-sm">{post.likes}</p>
                     </Link>

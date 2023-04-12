@@ -80,16 +80,14 @@ const getSavedPosts = async (userId) => {
   }
 }
 
-const updateLikes = async (postId) => {
+const updateLikes = async (postId, likeData, userId) => {
   try {
-    const post = await Post.findById(postId)
-    const updatePost = await Post.findByIdAndUpdate(
-      postId,
-      { like: post.likes },
-      { new: true }
-    )
-    console.log(updatePost)
-    return updatePost
+    const post = await Post.findByIdAndUpdate(postId, likeData)
+
+    post.likedUsers.push(userId)
+    await post.save()
+
+    return post
   } catch (error) {
     console.log(error)
   }
