@@ -29,9 +29,8 @@ const postSchema = new mongoose.Schema(
     },
     comments: [
       {
-        type: String,
+        type: Object,
         required: false,
-        default: [],
       },
     ],
   },

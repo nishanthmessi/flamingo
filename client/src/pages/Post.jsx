@@ -21,7 +21,8 @@ const Post = () => {
   const [postData, setPostData] = useState({})
   const [viewOptions, setViewOptions] = useState(false)
   const [savedPosts, setSavedPosts] = useState([])
-  const [newComment, setNewComment] = useState({})
+  const [newComment, setNewComment] = useState("")
+  const [btnDisable, setBtnDisable] = useState(true)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -30,11 +31,6 @@ const Post = () => {
   const user = useSelector((state) => state.user.value)
 
   const getPost = async () => {
-    const res = await Axios.get(`post/${currentPostId}`)
-    setPostData(res.data)
-  }
-
-  const getSavedPosts = async () => {
     const res = await Axios.get(`post/${currentPostId}`)
     setPostData(res.data)
   }
@@ -66,8 +62,14 @@ const Post = () => {
     try {
       await Axios.patch(`/comment/${currentPostId}`, {
         userId: user._id,
+        username: user.username,
+        name: user.name,
+        profileImage: user.profileImage,
         comment: newComment,
       })
+      setNewComment("")
+      setBtnDisable(true)
+      getPost()
     } catch (error) {
       console.log(error)
     }
@@ -227,20 +229,39 @@ const Post = () => {
                 </div>
               </div>
               <div className="flex items-center gap-3 py-3">
-                <img
-                  src={user.profileImage}
-                  alt="post-img"
-                  className="h-12 w-12 rounded-full object-cover cursor-pointer hover:opacity-90"
-                />
+                <Link
+                  to="/profile"
+                  onClick={() => dispatch(profileId(postData.userId))}
+                >
+                  <img
+                    src={user.profileImage}
+                    alt="profile-img"
+                    className="h-12 w-12 rounded-full object-cover cursor-pointer hover:opacity-90"
+                  />
+                </Link>
+
                 <textarea
                   type="text"
-                  className="outline-none resize-none w-full p-1 bg-gray-100 rounded-lg"
+                  className="outline-none resize-none w-[20vw] p-1 bg-gray-100 rounded-lg"
                   placeholder="Share your reply..."
                   rows="2"
-                  onChange={(e) => setNewComment(e.target.value)}
+                  value={newComment}
+                  onChange={(e) => {
+                    setNewComment(e.target.value)
+                    if (e.target.value === "") {
+                      setBtnDisable(true)
+                    } else {
+                      setBtnDisable(false)
+                    }
+                  }}
                 ></textarea>
                 <button
-                  className="bg-pink-400 hover:bg-pink-500 text-gray-50 rounded-2xl px-2 py-1"
+                  className={
+                    btnDisable
+                      ? "bg-gray-200 text-gray-50 text-sm rounded-2xl px-2 py-1 cursor-default"
+                      : "bg-pink-400 hover:bg-pink-500 text-gray-50 rounded-2xl px-2 py-1"
+                  }
+                  disabled={btnDisable}
                   onClick={commentPost}
                 >
                   Reply
@@ -248,6 +269,47 @@ const Post = () => {
               </div>
             </div>
             <div className="border-b-[1px]"></div>
+
+            <div className="my-2">
+              {!postData.comments ? (
+                <div className="flex justify-center items-center h-[20vh]">
+                  <Spinner />
+                </div>
+              ) : (
+                <>
+                  {postData.comments
+                    .map((post) => (
+                      <div className="flex items-center gap-2 px-4 py-2 border-b-[1px]">
+                        <Link
+                          to="/profile"
+                          onClick={() => dispatch(profileId(postData.userId))}
+                        >
+                          <img
+                            src={user.profileImage}
+                            alt="post-img"
+                            className="h-12 w-12 rounded-full object-cover cursor-pointer hover:opacity-90"
+                          />
+                        </Link>
+                        <div className="flex flex-col">
+                          <Link to="/profile">
+                            <p className="cursor-pointer font-semibold">
+                              <span className="hover:underline mr-1">
+                                {post.name}
+                              </span>
+                              .
+                              <span className="ml-1 font-medium text-gray-700">
+                                @{post.username}
+                              </span>
+                            </p>
+                          </Link>
+                          <p>{post.comment}</p>
+                        </div>
+                      </div>
+                    ))
+                    .reverse()}
+                </>
+              )}
+            </div>
           </div>
         </>
       )}

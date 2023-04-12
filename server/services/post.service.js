@@ -95,15 +95,19 @@ const updateLikes = async (postId) => {
   }
 }
 
-const createComment = async (postId, userId, comment) => {
+const createComment = async (postId, commentData) => {
   try {
-    const post = await Post.findByIdAndUpdate(postId, comment)
-    // const user = await User.findById(userId)
+    const post = await Post.findById(postId)
 
-    // post.comments.push(user, comment)
+    post.comments.push(commentData)
+    await post.save()
+
     return post
   } catch (error) {
-    throw { error: "Unable to save post", code: STATUS.UNPROCESSABLE_ENTITY }
+    throw {
+      error: "Unable to comment on post",
+      code: STATUS.UNPROCESSABLE_ENTITY,
+    }
   }
 }
 
