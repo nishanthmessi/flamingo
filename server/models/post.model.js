@@ -27,10 +27,12 @@ const postSchema = new mongoose.Schema(
       required: false,
       default: 0,
     },
-    likedUsers: {
-      type: Array,
-      required: false,
-    },
+    likedUsers: [
+      {
+        type: String,
+        required: false,
+      },
+    ],
     comments: [
       {
         type: Object,

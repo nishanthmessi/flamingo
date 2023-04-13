@@ -26,7 +26,7 @@ const Login = () => {
         password,
       })
 
-      setCookies("access_token", request.data.token)
+      // setCookies("access_token", request.data.token)
       window.localStorage.setItem("userId", request.data.id)
       window.localStorage.setItem("access_token", request.data.token)
       dispatch(authenticated(true))

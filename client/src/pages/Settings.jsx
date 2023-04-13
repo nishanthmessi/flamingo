@@ -78,16 +78,16 @@ const Settings = ({ user, setOpenSettings, getUser }) => {
           </button>
 
           <div className="flex justify-end items-end bg-gray-400">
-            {coverImgUrl ? (
-              <div className="">
+            {coverImgUrl === "" ? (
+              <div className=" h-[26vh]"></div>
+            ) : (
+              <div>
                 <img
                   src={coverImgUrl}
                   alt="post-img"
                   className="w-full object-cover"
                 />
               </div>
-            ) : (
-              <div className=" h-[30vh]"></div>
             )}
 
             <div className="absolute">

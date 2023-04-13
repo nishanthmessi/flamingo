@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import Axios from "axios"
 import {
   RiHeart3Line,
+  RiHeart3Fill,
   RiShareLine,
   RiMessage2Line,
   RiFlagLine,
@@ -13,14 +14,28 @@ import Spinner from "./Spinner"
 
 const Posts = ({ posts, getPosts }) => {
   const dispatch = useDispatch()
+
   const user = useSelector((state) => state.user.value)
 
   const handleLike = async (postId, postLikes) => {
     try {
       Axios.patch(`/likes/${postId}`, {
         likes: postLikes + 1,
-        likedUsers: user._id,
+      })
+      Axios.patch(`/liked-users/${postId}`, {
+        postId,
         userId: user._id,
+      })
+      getPosts()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const handleDislike = async (postId, postLikes) => {
+    try {
+      Axios.patch(`/likes/${postId}`, {
+        likes: postLikes - 1,
       })
       getPosts()
     } catch (error) {
@@ -94,13 +109,23 @@ const Posts = ({ posts, getPosts }) => {
 
                 <div className="flex items-center justify-between mt-3">
                   <div>
-                    <Link
-                      className="flex gap-1 items-center hover:text-red-600 hover:bg-red-200 rounded-2xl p-2 transition duration-400 ease-in"
-                      onClick={() => handleLike(post._id, post.likes)}
-                    >
-                      <RiHeart3Line className="text-lg" />
-                      <p className="text-sm">{post.likes}</p>
-                    </Link>
+                    {post.likedUsers.includes(user._id) ? (
+                      <Link
+                        className="flex gap-1 items-center hover:text-red-600 hover:bg-red-200 rounded-2xl p-2 transition duration-400 ease-in"
+                        onClick={() => handleDislike(post._id, post.likes)}
+                      >
+                        <RiHeart3Fill className="text-lg text-red-600" />
+                        <p className="text-sm">{post.likes}</p>
+                      </Link>
+                    ) : (
+                      <Link
+                        className="flex gap-1 items-center hover:text-red-600 hover:bg-red-200 rounded-2xl p-2 transition duration-400 ease-in"
+                        onClick={() => handleLike(post._id, post.likes)}
+                      >
+                        <RiHeart3Line className="text-lg" />
+                        <p className="text-sm">{post.likes}</p>
+                      </Link>
+                    )}
                   </div>
 
                   <div className="flex gap-6">

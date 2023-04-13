@@ -2,6 +2,8 @@ import Axios from "axios"
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useCookies } from "react-cookie"
+import { useDispatch } from "react-redux"
+import { authenticated } from "../features/auth"
 
 const Register = () => {
   const [fullName, setFullName] = useState("")
@@ -9,6 +11,7 @@ const Register = () => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
 
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const [_, setCookies] = useCookies()
 
@@ -25,6 +28,7 @@ const Register = () => {
       setCookies("access_token", request.data.token)
       window.localStorage.setItem("userId", request.data.id)
       window.localStorage.setItem("access_token", request.data.token)
+      dispatch(authenticated(true))
       navigate("/home")
     } catch (error) {
       console.log(error)

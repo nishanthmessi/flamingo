@@ -83,10 +83,17 @@ const getSavedPosts = async (userId) => {
 const updateLikes = async (postId, likeData, userId) => {
   try {
     const post = await Post.findByIdAndUpdate(postId, likeData)
+    return post
+  } catch (error) {
+    console.log(error)
+  }
+}
 
+const updateLikedUsers = async (postId, userId) => {
+  try {
+    const post = await Post.findById(postId)
     post.likedUsers.push(userId)
     await post.save()
-
     return post
   } catch (error) {
     console.log(error)
@@ -180,6 +187,7 @@ module.exports = {
   getSavedPostsId,
   getSavedPosts,
   updateLikes,
+  updateLikedUsers,
   createComment,
   updateSavedPost,
   removeSavedPost,
