@@ -109,7 +109,7 @@ const Posts = ({ posts, getPosts }) => {
 
                 <div className="flex items-center justify-between mt-3">
                   <div>
-                    {post.likedUsers.includes(user._id) ? (
+                    {/* {post.likedUsers.includes(user._id) ? (
                       <Link
                         className="flex gap-1 items-center hover:text-red-600 hover:bg-red-200 rounded-2xl p-2 transition duration-400 ease-in"
                         onClick={() => handleDislike(post._id, post.likes)}
@@ -117,15 +117,15 @@ const Posts = ({ posts, getPosts }) => {
                         <RiHeart3Fill className="text-lg text-red-600" />
                         <p className="text-sm">{post.likes}</p>
                       </Link>
-                    ) : (
-                      <Link
-                        className="flex gap-1 items-center hover:text-red-600 hover:bg-red-200 rounded-2xl p-2 transition duration-400 ease-in"
-                        onClick={() => handleLike(post._id, post.likes)}
-                      >
-                        <RiHeart3Line className="text-lg" />
-                        <p className="text-sm">{post.likes}</p>
-                      </Link>
-                    )}
+                    ) : ( */}
+                    <Link
+                      className="flex gap-1 items-center hover:text-red-600 hover:bg-red-200 rounded-2xl p-2 transition duration-400 ease-in"
+                      onClick={() => handleLike(post._id, post.likes)}
+                    >
+                      <RiHeart3Line className="text-lg" />
+                      <p className="text-sm">{post.likes}</p>
+                    </Link>
+                    {/* )} */}
                   </div>
 
                   <div className="flex gap-6">

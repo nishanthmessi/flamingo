@@ -31,7 +31,7 @@ const Profile = () => {
     window.localStorage.removeItem("userId")
     window.localStorage.removeItem("access_token")
     dispatch(authenticated(false))
-    navigate("/login")
+    navigate("/")
   }
 
   return (

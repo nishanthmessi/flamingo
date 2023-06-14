@@ -11,7 +11,7 @@ const Explore = () => {
           <input
             type="text"
             className="bg-gray-200 placeholder:text-sm placeholder:text-gray-500 hover:bg-gray-50 outline-none"
-            placeholder="search twitter"
+            placeholder="search posts"
           />
         </div>
         <ProfileCard />

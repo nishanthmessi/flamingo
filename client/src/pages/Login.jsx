@@ -36,6 +36,25 @@ const Login = () => {
     }
   }
 
+  const handleGuestLogin = async (e) => {
+    e.preventDefault()
+
+    try {
+      const request = await Axios.post("/auth/signin", {
+        email: "openguest@mail.com",
+        password: "1111122222",
+      })
+
+      // setCookies("access_token", request.data.token)
+      window.localStorage.setItem("userId", request.data.id)
+      window.localStorage.setItem("access_token", request.data.token)
+      dispatch(authenticated(true))
+      navigate("/home")
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="border p-6 rounded-md">
@@ -50,6 +69,7 @@ const Login = () => {
             placeholder="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <input
             type="password"
@@ -57,6 +77,7 @@ const Login = () => {
             placeholder="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <button
             className="bg-gray-800 w-full py-2 rounded-xl text-sm text-gray-300"
@@ -70,6 +91,18 @@ const Login = () => {
             <Link to="/signup" className="text-blue-500 hover:underline">
               Sign Up
             </Link>
+          </div>
+          <div className="p-2">
+            <p className="text-[.8rem] mb-1 text-gray-600">
+              Just wanna check out? you're one click away
+            </p>
+            <button
+              className="bg-pink-500 w-full py-1.5 px-2 rounded-xl text-sm text-gray-200 hover:text-gray-100"
+              type="submit"
+              onClick={handleGuestLogin}
+            >
+              Guest Login
+            </button>
           </div>
         </form>
       </div>

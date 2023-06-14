@@ -22,7 +22,7 @@ const App = () => {
     <div className="flex justify-center gap-8 w-[98vw]">
       {isAuthenticated ? <NavBar /> : <></>}
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route index={true} path="/" element={<Login />} />
         <Route path="/signup" element={<Register />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/home" element={<Feed />} exact />
