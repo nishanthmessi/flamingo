@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { useCookies } from "react-cookie"
 import { useDispatch } from "react-redux"
 import { authenticated } from "../features/auth"
+import Logo from "../assets/main-logo.png"
 
 const Register = () => {
   const [fullName, setFullName] = useState("")
@@ -38,7 +39,10 @@ const Register = () => {
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="border p-6 rounded-md">
-        <h1 className="text-xl font-bold text-center mb-10">Flamingo</h1>
+        <div className="flex items-center justify-center gap-2 mb-10">
+          <img src={Logo} alt="logo" className="h-9" />
+          <h1 className="text-xl font-bold text-center ">Flamingo</h1>
+        </div>
         <form
           action="submit"
           className="flex flex-col justify-center items-center gap-4 w-[50vw] sm:w-[20vw]"
@@ -78,7 +82,7 @@ const Register = () => {
 
           <div className="flex text-[.8rem] gap-1">
             <p>Already have account?</p>
-            <Link to="/login" className="text-blue-500 hover:underline">
+            <Link to="/" className="text-blue-500 hover:underline">
               Sign In
             </Link>
           </div>

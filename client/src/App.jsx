@@ -14,7 +14,7 @@ import { useSelector } from "react-redux"
 import ProtectedRoute from "./utils/ProtectedRoute"
 
 const App = () => {
-  Axios.defaults.baseURL = "http://localhost:5001/api"
+  Axios.defaults.baseURL = "https://flamingo-app-server.onrender.com/api"
 
   const isAuthenticated = useSelector((state) => state.auth.value)
 

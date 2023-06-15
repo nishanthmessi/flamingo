@@ -4,6 +4,7 @@ import Axios from "axios"
 import { useCookies } from "react-cookie"
 import { useDispatch, useSelector } from "react-redux"
 import { authenticated } from "../features/auth"
+import Logo from "../assets/main-logo.png"
 
 const Login = () => {
   const [email, setEmail] = useState("")
@@ -15,7 +16,6 @@ const Login = () => {
   const navigate = useNavigate()
 
   const isAuth = useSelector((state) => state.auth.value)
-  console.log(isAuth)
 
   const handleLogin = async (e) => {
     e.preventDefault()
@@ -41,11 +41,10 @@ const Login = () => {
 
     try {
       const request = await Axios.post("/auth/signin", {
-        email: "openguest@mail.com",
+        email: "shroud@mail.com",
         password: "1111122222",
       })
 
-      // setCookies("access_token", request.data.token)
       window.localStorage.setItem("userId", request.data.id)
       window.localStorage.setItem("access_token", request.data.token)
       dispatch(authenticated(true))
@@ -58,7 +57,10 @@ const Login = () => {
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="border p-6 rounded-md">
-        <h1 className="text-xl font-bold text-center mb-10">Flamingo</h1>
+        <div className="flex items-center justify-center gap-2 mb-10">
+          <img src={Logo} alt="logo" className="h-9" />
+          <h1 className="text-xl font-bold text-center ">Flamingo</h1>
+        </div>
         <form
           className="flex flex-col justify-center items-center gap-4 w-[50vw] sm:w-[20vw]"
           onSubmit={handleLogin}
